@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FeatureShowcase } from "@/components/feature-showcase";
 import { FeatureDetail } from "@/components/feature-detail";
 import { SecurityNote } from "@/components/security-note";
 import { CtaBand } from "@/components/cta-band";
@@ -34,9 +35,22 @@ export default function FeaturesPage() {
         </div>
       </section>
 
+      <FeatureShowcase />
+
       <section className="bg-white py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-6">
-          <FeatureDetail />
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+              Every feature, at a glance
+            </h2>
+            <p className="mt-4 text-lg text-slate-600">
+              The full list, grouped by how your team actually uses it day to
+              day.
+            </p>
+          </div>
+          <div className="mt-16">
+            <FeatureDetail />
+          </div>
         </div>
       </section>
 

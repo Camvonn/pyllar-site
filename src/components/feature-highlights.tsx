@@ -26,7 +26,7 @@ export function FeatureHighlights() {
               key={feature.slug}
               className="rounded-xl border border-slate-200 bg-slate-50/60 p-6 transition-shadow hover:shadow-md"
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-teal-600/10 text-teal-700">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-teal-500 to-teal-700 text-white shadow-sm">
                 <feature.icon className="h-6 w-6" aria-hidden />
               </div>
               <h3 className="mt-4 text-lg font-semibold text-slate-900">

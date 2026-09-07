@@ -42,8 +42,10 @@ npm run lint    # eslint
   note, and a call-to-action band.
 - `/features` — Full feature list, grouped into Care & Safety, Day-to-Day
   Operations, and Insights & Reporting, plus the security/privacy note.
-- `/pricing` — Pricing philosophy ("contact us for a quote," no self-serve
-  checkout), what's included, and an FAQ.
+- `/pricing` — Per-facility pricing with illustrative example starting
+  prices ($299/mo first facility, $199/mo each additional — clearly marked
+  as example/starting prices, not a binding quote), what's included, add-ons,
+  and an expanded FAQ. Final CTA is still "Contact us for a custom quote."
 - `/demo` — The "Request a Demo" lead-capture form, plus what happens after
   someone submits it.
 - `/privacy`, `/terms` — Placeholder legal pages, clearly labeled as
@@ -70,9 +72,11 @@ src/
     footer.tsx               # product/legal links + contact
     logo.tsx                 # shared wordmark + icon mark
     scroll-pillar.tsx         # decorative scroll-progress "pillar" (see below)
-    hero.tsx
-    feature-highlights.tsx    # condensed feature grid (Home)
-    feature-detail.tsx         # full grouped feature list (Features page)
+    hero.tsx                   # homepage hero, includes the dashboard mockup
+    feature-highlights.tsx      # condensed feature grid (Home)
+    feature-detail.tsx           # full grouped feature list (Features page)
+    feature-showcase.tsx          # "See Pyllar in action" mockup showcase (Features page)
+    mockups/                        # illustrative, code-drawn UI mockups (see below)
     security-note.tsx          # "built with security & privacy in mind" section
     testimonial.tsx             # fabricated, clearly-labeled illustrative testimonial
     cta-band.tsx                 # reusable bottom-of-page CTA
@@ -82,6 +86,28 @@ src/
   lib/
     features.ts                     # shared feature copy/data used across pages
 ```
+
+## Illustrative UI mockups
+
+The real Pyllar product UI lives in a separate, still-in-progress repo, so
+there are no real screenshots to use here yet. Instead, `src/components/
+mockups/` contains small, code-drawn "mockups" (skeleton lines, chips, bar
+charts, a calendar grid) built from plain divs/Tailwind — no external images
+or design tool needed:
+
+- `dashboard-mockup.tsx` — the homepage hero image (an "overview dashboard"
+  with stat tiles, a bar chart, and a schedule list).
+- `feature-mockups.tsx` — four flagship-feature mockups (youth profile,
+  incidents list, scheduling calendar, analytics charts) used in the "See
+  Pyllar in action" section on `/features`.
+- `mockup-frame.tsx` — the shared "browser chrome" wrapper and a visible
+  `<figcaption>` on every mockup reading "Illustrative concept — not an
+  actual product screenshot" (the internals are `aria-hidden`, since they're
+  decorative, not informational — the same pattern used for the homepage
+  testimonial's "illustrative example" label).
+
+Replace these with real product screenshots once the actual app UI is far
+enough along to show publicly.
 
 ## Brand motif: the scroll "pillar"
 
@@ -185,5 +211,13 @@ domain, or DNS has been set up as part of this work.
 - **Social preview image:** `opengraph-image.tsx` generates a simple,
   code-drawn banner via `next/og`. Replace with real brand assets if/when a
   design system exists.
+- **UI mockups:** the dashboard/feature mockups on the homepage and
+  `/features` are illustrative, code-drawn approximations, clearly captioned
+  as such — not real product screenshots. Replace with real screenshots once
+  the actual app UI is ready to show publicly.
+- **Example pricing:** the $299/$199 per-facility numbers on `/pricing` are
+  illustrative example/starting prices to demonstrate the pricing model
+  (per-facility, volume discount on additional facilities), not confirmed
+  real pricing. Confirm actual numbers before launch.
 - **Hosting/deployment:** not set up yet. This repo is ready to deploy to any
   Next.js-compatible host (e.g. Vercel) whenever that decision is made.

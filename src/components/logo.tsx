@@ -10,7 +10,7 @@ export function LogoMark({ className = "h-8 w-8" }: { className?: string }) {
   return (
     <span
       aria-hidden
-      className={`inline-flex items-center justify-center rounded-lg bg-teal-600 ${className}`}
+      className={`inline-flex items-center justify-center rounded-lg bg-gradient-to-br from-teal-400 to-teal-700 shadow-sm ${className}`}
     >
       <svg
         viewBox="0 0 24 24"
@@ -18,9 +18,9 @@ export function LogoMark({ className = "h-8 w-8" }: { className?: string }) {
         className="h-[55%] w-[55%]"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <rect x="3" y="4" width="4" height="16" rx="1" fill="white" />
-        <rect x="10" y="2" width="4" height="18" rx="1" fill="white" />
-        <rect x="17" y="7" width="4" height="13" rx="1" fill="white" />
+        <rect x="3" y="4" width="4" height="16" rx="1.5" fill="white" />
+        <rect x="10" y="2" width="4" height="18" rx="1.5" fill="white" />
+        <rect x="17" y="7" width="4" height="13" rx="1.5" fill="white" />
       </svg>
     </span>
   );

@@ -36,7 +36,7 @@ export function FeatureDetail() {
                   className="rounded-xl border border-slate-200 bg-white p-6"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-600/10 text-teal-700">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-teal-500 to-teal-700 text-white shadow-sm">
                       <feature.icon className="h-5 w-5" aria-hidden />
                     </span>
                     <h3 className="text-lg font-semibold text-slate-900">
