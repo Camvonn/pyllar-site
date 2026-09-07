@@ -16,3 +16,18 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
+
+/* Scroll-progress "pillar" indicator (see components/scroll-pillar.tsx). */
+.scroll-pillar-fill {
+  transition: transform 150ms linear;
+  box-shadow: 0 0 10px 1px rgba(20, 184, 166, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-pillar-fill {
+    /* Keep the fill directly tied to scroll position, but drop the easing
+       and glow so there is no independent, self-playing animation. */
+    transition: none;
+    box-shadow: none;
+  }
+}

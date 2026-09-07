@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { ScrollPillar } from "@/components/scroll-pillar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,11 +18,16 @@ const geistMono = Geist_Mono({
 // NOTE: pyllar.com is an assumed/aspirational domain for this pre-launch
 // marketing site. Confirm the real production domain before deploying and
 // update `metadataBase` (and any absolute URLs) accordingly.
+const SITE_DESCRIPTION =
+  "Pyllar is all-in-one software for group homes and residential youth facilities — youth profiles, incidents, medications, scheduling, staff, and CARF-oriented reporting in one place.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.pyllar.com"),
-  title: "Pyllar | Group Home & Youth Facility Management Software",
-  description:
-    "Pyllar is all-in-one software for group homes and residential youth facilities — youth profiles, incidents, medications, scheduling, staff, and CARF-oriented reporting in one place.",
+  title: {
+    default: "Pyllar | Group Home & Youth Facility Management Software",
+    template: "%s | Pyllar",
+  },
+  description: SITE_DESCRIPTION,
   keywords: [
     "group home software",
     "residential treatment software",
@@ -38,6 +44,12 @@ export const metadata: Metadata = {
     siteName: "Pyllar",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pyllar | Group Home & Youth Facility Management Software",
+    description:
+      "One secure portal for youth, staff, incidents, medications, scheduling, and CARF-oriented reporting.",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -47,6 +59,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-white text-slate-900">
+        <ScrollPillar />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

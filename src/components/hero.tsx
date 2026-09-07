@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-slate-900 text-white">
@@ -22,18 +24,18 @@ export function Hero() {
         </p>
 
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <a
-            href="#demo"
+          <Link
+            href="/demo"
             className="inline-flex items-center justify-center rounded-md bg-teal-500 px-6 py-3 text-base font-semibold text-slate-950 shadow-lg shadow-teal-500/20 transition-colors hover:bg-teal-400"
           >
             Request a Demo
-          </a>
-          <a
-            href="#features"
+          </Link>
+          <Link
+            href="/features"
             className="inline-flex items-center justify-center rounded-md border border-slate-600 px-6 py-3 text-base font-semibold text-slate-100 transition-colors hover:border-slate-400 hover:bg-white/5"
           >
             See What&apos;s Included
-          </a>
+          </Link>
         </div>
 
         <dl className="mt-4 grid grid-cols-1 gap-x-10 gap-y-4 text-sm text-slate-400 sm:grid-cols-3">

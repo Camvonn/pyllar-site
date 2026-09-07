@@ -1,17 +1,17 @@
 import { Hero } from "@/components/hero";
-import { Features } from "@/components/features";
+import { FeatureHighlights } from "@/components/feature-highlights";
 import { Testimonial } from "@/components/testimonial";
-import { PricingNote } from "@/components/pricing-note";
-import { DemoSection } from "@/components/demo-section";
+import { SecurityNote } from "@/components/security-note";
+import { CtaBand } from "@/components/cta-band";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Features />
+      <FeatureHighlights />
       <Testimonial />
-      <PricingNote />
-      <DemoSection />
+      <SecurityNote compact />
+      <CtaBand />
     </>
   );
 }

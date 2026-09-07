@@ -5,7 +5,10 @@ type LeadPayload = {
   email: string;
   organization: string;
   phone?: string;
+  notes?: string;
 };
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function isValidLead(value: unknown): value is LeadPayload {
   if (!value || typeof value !== "object") return false;
@@ -14,10 +17,11 @@ function isValidLead(value: unknown): value is LeadPayload {
     typeof v.name === "string" &&
     v.name.trim().length > 0 &&
     typeof v.email === "string" &&
-    v.email.trim().length > 0 &&
+    EMAIL_PATTERN.test(v.email.trim()) &&
     typeof v.organization === "string" &&
     v.organization.trim().length > 0 &&
-    (v.phone === undefined || typeof v.phone === "string")
+    (v.phone === undefined || typeof v.phone === "string") &&
+    (v.notes === undefined || typeof v.notes === "string")
   );
 }
 
@@ -55,7 +59,8 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         ok: false,
-        error: "Missing required fields: name, email, organization.",
+        error:
+          "Missing or invalid required fields: name, valid email, organization.",
       },
       { status: 400 },
     );
@@ -66,6 +71,7 @@ export async function POST(request: Request) {
     email: body.email.trim(),
     organization: body.organization.trim(),
     phone: body.phone?.trim() || undefined,
+    notes: body.notes?.trim() || undefined,
   };
 
   // Always log server-side so a lead is never silently dropped, even if the
