@@ -21,10 +21,10 @@ export function DemoSection() {
     <section id="demo" className="bg-white py-20 sm:py-28">
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-12 px-6 lg:grid-cols-2 lg:items-start">
         <div>
-          <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+          <h1 className="font-heading text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             See Pyllar on your workflow
           </h1>
-          <p className="mt-4 text-lg text-slate-600">
+          <p className="mt-4 text-lg leading-relaxed text-slate-600">
             Tell us a bit about your organization and we&apos;ll set up a
             guided demo with your team. We work directly with each facility
             to make sure Pyllar fits how you actually run your day-to-day.
@@ -89,7 +89,7 @@ export function DemoSection() {
           </p>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-slate-50/60 p-6 sm:p-8">
+        <div className="rounded-2xl border border-slate-200 bg-slate-50/60 p-6 shadow-[0_20px_50px_-15px_rgba(15,23,42,0.12)] sm:p-8">
           <DemoForm />
         </div>
       </div>

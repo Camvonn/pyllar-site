@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Logo } from "./logo";
+import { LogoMark, Wordmark } from "./logo";
 
 const PRODUCT_LINKS = [
   { href: "/features", label: "Features" },
@@ -21,24 +21,27 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-slate-200 bg-slate-50">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-12 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="border-t border-white/10 bg-ink">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <Logo />
-          <p className="mt-3 max-w-xs text-sm text-slate-500">
+          <Link href="/" className="flex items-center gap-2">
+            <LogoMark />
+            <Wordmark className="text-white" />
+          </Link>
+          <p className="mt-3 max-w-xs text-sm leading-relaxed text-slate-400">
             One system for youth, staff, and everyday operations at group
             homes and residential youth facilities.
           </p>
         </div>
 
         <nav aria-label="Product">
-          <h3 className="text-sm font-semibold text-slate-900">Product</h3>
-          <ul className="mt-3 space-y-2 text-sm text-slate-600">
+          <h3 className="text-sm font-semibold text-white">Product</h3>
+          <ul className="mt-3 space-y-2 text-sm text-slate-400">
             {PRODUCT_LINKS.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="transition-colors hover:text-slate-900"
+                  className="transition-colors hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -48,13 +51,13 @@ export function Footer() {
         </nav>
 
         <nav aria-label="Legal">
-          <h3 className="text-sm font-semibold text-slate-900">Legal</h3>
-          <ul className="mt-3 space-y-2 text-sm text-slate-600">
+          <h3 className="text-sm font-semibold text-white">Legal</h3>
+          <ul className="mt-3 space-y-2 text-sm text-slate-400">
             {LEGAL_LINKS.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="transition-colors hover:text-slate-900"
+                  className="transition-colors hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -64,11 +67,11 @@ export function Footer() {
         </nav>
 
         <div>
-          <h3 className="text-sm font-semibold text-slate-900">Contact</h3>
-          <p className="mt-3 text-sm text-slate-600">
+          <h3 className="text-sm font-semibold text-white">Contact</h3>
+          <p className="mt-3 text-sm text-slate-400">
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="font-medium text-teal-700 hover:text-teal-800"
+              className="font-medium text-teal-400 transition-colors hover:text-teal-300"
             >
               {CONTACT_EMAIL}
             </a>
@@ -76,7 +79,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-slate-200 px-6 py-4 text-center text-xs text-slate-400">
+      <div className="border-t border-white/10 px-6 py-4 text-center text-xs text-slate-500">
         © {year} Pyllar. All rights reserved.
       </div>
     </footer>

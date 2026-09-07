@@ -8,13 +8,41 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  /* A richer, slightly-blue near-black used for dark sections (hero, CTA
+     bands, footer) instead of a flat/stock slate-900, for a more custom,
+     premium feel. Generates bg-ink / text-ink / border-ink utilities. */
+  --color-ink: #0a0e1a;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  /* Headings-only display font (see layout.tsx) — generates the
+     `font-heading` utility used on h1/h2/h3-level headings sitewide. */
+  --font-heading: var(--font-space-grotesk);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  line-height: 1.6;
+}
+
+p {
+  letter-spacing: 0.005em;
+}
+
+/* Respect prefers-reduced-motion globally: collapse all transitions/
+   animations to effectively instant, regardless of which component added
+   them (hover scale/lift effects, scroll-reveal fades, etc.). Individual
+   components (e.g. the scroll-pillar) may also have their own explicit
+   reduced-motion handling; this is a sitewide safety net on top of that. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Scroll-progress "pillar" indicator (see components/scroll-pillar.tsx). */

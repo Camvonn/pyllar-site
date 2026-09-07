@@ -29,7 +29,7 @@ export function LogoMark({ className = "h-8 w-8" }: { className?: string }) {
 export function Wordmark({ className = "" }: { className?: string }) {
   return (
     <span
-      className={`text-lg font-semibold tracking-tight text-slate-900 ${className}`}
+      className={`font-heading text-lg font-bold tracking-tight text-slate-900 ${className}`}
     >
       Pyllar
     </span>

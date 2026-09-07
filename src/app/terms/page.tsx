@@ -11,7 +11,7 @@ export default function TermsPage() {
   return (
     <section className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-3xl px-6">
-        <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+        <h1 className="font-heading text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
           Terms of Service
         </h1>
         <p className="mt-2 text-sm text-slate-500">Last updated: —</p>

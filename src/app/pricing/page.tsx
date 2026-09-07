@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Check } from "lucide-react";
+import { DarkSectionGlow } from "@/components/dark-section-glow";
+import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -83,50 +85,58 @@ export default function PricingPage() {
   return (
     <>
       <section className="bg-white py-20 sm:py-24">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-            Pricing
+        <Reveal className="mx-auto max-w-3xl px-6 text-center">
+          <h1 className="font-heading text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+            Straightforward, per-facility pricing
           </h1>
-          <p className="mt-4 text-lg text-slate-600">
-            Pyllar is priced per facility, with each additional facility
-            costing less than the first. Here&apos;s an example of how that
-            looks — your actual quote depends on your size and needs.
+          <p className="mt-4 text-lg leading-relaxed text-slate-600">
+            One price per facility, with each additional facility costing
+            less than the first. Here&apos;s an example of how that looks —
+            your actual quote depends on your size and needs.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <section className="bg-slate-50 py-4 sm:py-6">
-        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 px-6 sm:grid-cols-2">
-          <div className="rounded-2xl border border-slate-200 bg-white p-8">
+        <Reveal className="mx-auto grid max-w-4xl grid-cols-1 gap-6 px-6 sm:grid-cols-2">
+          <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/70">
+            <div
+              aria-hidden
+              className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-teal-400 to-teal-600"
+            />
             <p className="text-sm font-semibold uppercase tracking-wide text-teal-700">
               First facility
             </p>
             <p className="mt-2 flex items-baseline gap-1">
-              <span className="text-4xl font-semibold tracking-tight text-slate-900">
+              <span className="font-heading text-4xl font-bold tracking-tight text-slate-900">
                 $299
               </span>
               <span className="text-sm text-slate-500">/month</span>
             </p>
-            <p className="mt-3 text-sm text-slate-600">
+            <p className="mt-3 text-sm leading-relaxed text-slate-600">
               Everything in Pyllar&apos;s core plan for your first location.
             </p>
           </div>
 
-          <div className="rounded-2xl border border-slate-200 bg-white p-8">
+          <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/70">
+            <div
+              aria-hidden
+              className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-teal-400 to-teal-600"
+            />
             <p className="text-sm font-semibold uppercase tracking-wide text-teal-700">
               Each additional facility
             </p>
             <p className="mt-2 flex items-baseline gap-1">
-              <span className="text-4xl font-semibold tracking-tight text-slate-900">
+              <span className="font-heading text-4xl font-bold tracking-tight text-slate-900">
                 $199
               </span>
               <span className="text-sm text-slate-500">/month</span>
             </p>
-            <p className="mt-3 text-sm text-slate-600">
+            <p className="mt-3 text-sm leading-relaxed text-slate-600">
               For organizations running more than one facility on Pyllar.
             </p>
           </div>
-        </div>
+        </Reveal>
 
         <p className="mx-auto mt-6 max-w-2xl px-6 text-center text-sm italic text-slate-500">
           Example, starting prices shown to illustrate our pricing model —
@@ -136,13 +146,16 @@ export default function PricingPage() {
       </section>
 
       <section className="bg-white py-16 sm:py-20">
-        <div className="mx-auto max-w-3xl px-6">
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+        <Reveal className="mx-auto max-w-3xl px-6">
+          <h2 className="font-heading text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
             What&apos;s included
           </h2>
           <ul className="mt-6 space-y-3">
             {CORE_INCLUDED.map((item) => (
-              <li key={item} className="flex items-start gap-3 text-slate-700">
+              <li
+                key={item}
+                className="flex items-start gap-3 leading-relaxed text-slate-700"
+              >
                 <Check
                   className="mt-0.5 h-5 w-5 shrink-0 text-teal-600"
                   aria-hidden
@@ -151,12 +164,12 @@ export default function PricingPage() {
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
       </section>
 
       <section className="bg-slate-50 py-16 sm:py-20">
-        <div className="mx-auto max-w-3xl px-6">
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+        <Reveal className="mx-auto max-w-3xl px-6">
+          <h2 className="font-heading text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
             Add-ons
           </h2>
           <p className="mt-3 text-slate-600">
@@ -167,7 +180,7 @@ export default function PricingPage() {
             {ADD_ONS.map((addOn) => (
               <div
                 key={addOn.title}
-                className="rounded-xl border border-slate-200 bg-white p-5"
+                className="rounded-xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-lg hover:shadow-slate-200/60"
               >
                 <h3 className="text-sm font-semibold text-slate-900">
                   {addOn.title}
@@ -178,12 +191,12 @@ export default function PricingPage() {
               </div>
             ))}
           </div>
-        </div>
+        </Reveal>
       </section>
 
       <section className="bg-white py-16 sm:py-20">
-        <div className="mx-auto max-w-3xl px-6">
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+        <Reveal className="mx-auto max-w-3xl px-6">
+          <h2 className="font-heading text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
             Frequently asked questions
           </h2>
           <dl className="mt-8 space-y-8">
@@ -198,25 +211,26 @@ export default function PricingPage() {
               </div>
             ))}
           </dl>
-        </div>
+        </Reveal>
       </section>
 
-      <section className="bg-slate-900 py-16 sm:py-20">
-        <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 text-center">
-          <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+      <section className="relative overflow-hidden bg-ink py-16 sm:py-20">
+        <DarkSectionGlow />
+        <Reveal className="relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 text-center">
+          <h2 className="font-heading text-2xl font-bold tracking-tight text-white sm:text-3xl">
             Contact us for a custom quote
           </h2>
-          <p className="max-w-xl text-slate-300">
+          <p className="max-w-xl leading-relaxed text-slate-300">
             Every organization is a little different — tell us about your
             facility and we&apos;ll put together pricing that fits.
           </p>
           <Link
             href="/demo"
-            className="inline-flex items-center justify-center rounded-md bg-teal-500 px-6 py-3 text-base font-semibold text-slate-950 shadow-lg shadow-teal-500/20 transition-colors hover:bg-teal-400"
+            className="inline-flex items-center justify-center rounded-md bg-teal-500 px-6 py-3 text-base font-semibold text-slate-950 shadow-lg shadow-teal-500/20 transition-all duration-200 hover:scale-[1.02] hover:bg-teal-400 hover:shadow-xl hover:shadow-teal-500/30 active:scale-[0.98]"
           >
             Request a Demo
           </Link>
-        </div>
+        </Reveal>
       </section>
     </>
   );

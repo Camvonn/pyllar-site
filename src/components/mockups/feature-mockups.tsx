@@ -1,4 +1,4 @@
-import { Chip, MockupFrame, SkeletonLine } from "./mockup-frame";
+import { Chip, MockButton, MockupFrame, SkeletonLine } from "./mockup-frame";
 
 /**
  * Illustrative, abstract UI mockups for individual features on the
@@ -12,7 +12,7 @@ export function ProfileMockup() {
   return (
     <MockupFrame title="Pyllar — Youth Profile">
       <div className="flex items-center gap-3">
-        <div className="h-10 w-10 shrink-0 rounded-full bg-teal-100" />
+        <div className="h-10 w-10 shrink-0 rounded-full bg-gradient-to-br from-teal-400 to-teal-600" />
         <div className="flex-1 space-y-1.5">
           <SkeletonLine width="w-24" tone="bg-slate-300" />
           <SkeletonLine width="w-16" />
@@ -32,6 +32,9 @@ export function ProfileMockup() {
           </div>
         ))}
       </dl>
+      <div className="mt-4 flex justify-end">
+        <MockButton width="w-24" />
+      </div>
     </MockupFrame>
   );
 }
@@ -45,7 +48,13 @@ const INCIDENTS = [
 export function IncidentsMockup() {
   return (
     <MockupFrame title="Pyllar — Incidents">
-      <div className="space-y-2.5">
+      <div className="flex items-center justify-between">
+        <p className="text-xs font-semibold text-slate-500">
+          Recent incidents
+        </p>
+        <MockButton width="w-20" />
+      </div>
+      <div className="mt-3 space-y-2.5">
         {INCIDENTS.map((incident, index) => (
           <div
             key={index}
@@ -69,7 +78,11 @@ export function ScheduleMockup() {
 
   return (
     <MockupFrame title="Pyllar — Scheduling">
-      <div className="grid grid-cols-7 gap-1.5">
+      <div className="flex items-center justify-between">
+        <p className="text-xs font-semibold text-slate-500">This month</p>
+        <MockButton width="w-20" />
+      </div>
+      <div className="mt-3 grid grid-cols-7 gap-1.5">
         {CALENDAR_DAYS.map((day, index) => (
           <span
             key={index}
@@ -82,7 +95,9 @@ export function ScheduleMockup() {
           <div
             key={cell}
             className={`h-6 rounded ${
-              HIGHLIGHTED_CELLS.has(cell) ? "bg-teal-500/80" : "bg-slate-100"
+              HIGHLIGHTED_CELLS.has(cell)
+                ? "bg-gradient-to-br from-teal-400 to-teal-600"
+                : "bg-slate-100"
             }`}
           />
         ))}

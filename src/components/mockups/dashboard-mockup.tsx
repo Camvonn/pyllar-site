@@ -1,14 +1,18 @@
-import { Chip, MockupFrame } from "./mockup-frame";
+import { Chip, MockButton, MockupFrame } from "./mockup-frame";
 
 const STATS = [
-  { label: "Youth in care", value: "42" },
-  { label: "Open incidents", value: "3" },
-  { label: "Meds due today", value: "12" },
+  { label: "Youth in care", value: "42", accent: "border-teal-400" },
+  { label: "Open incidents", value: "3", accent: "border-amber-400" },
+  { label: "Meds due today", value: "12", accent: "border-sky-400" },
 ];
 
 const CHART_BARS = [40, 65, 50, 80, 55, 70, 60];
 
-const SCHEDULE = ["Court appearance", "Therapy — group session", "School pickup"];
+const SCHEDULE = [
+  "Court appearance",
+  "Therapy — group session",
+  "School pickup",
+];
 
 /**
  * Illustrative "dashboard overview" mockup used as the homepage hero image.
@@ -18,11 +22,16 @@ const SCHEDULE = ["Court appearance", "Therapy — group session", "School picku
 export function DashboardMockup() {
   return (
     <MockupFrame title="Pyllar — Overview">
-      <div className="grid grid-cols-3 gap-3">
+      <div className="flex items-center justify-between">
+        <p className="text-xs font-semibold text-slate-500">This week</p>
+        <MockButton width="w-20" />
+      </div>
+
+      <div className="mt-3 grid grid-cols-3 gap-3">
         {STATS.map((stat) => (
           <div
             key={stat.label}
-            className="rounded-lg border border-slate-100 bg-slate-50 p-3"
+            className={`rounded-lg border-l-4 ${stat.accent} bg-slate-50 p-3`}
           >
             <p className="text-lg font-semibold text-slate-900">
               {stat.value}
@@ -43,7 +52,7 @@ export function DashboardMockup() {
             {CHART_BARS.map((height, index) => (
               <div
                 key={index}
-                className="flex-1 rounded-t bg-teal-500/70"
+                className="flex-1 rounded-t bg-gradient-to-t from-teal-600 to-teal-400"
                 style={{ height: `${height}%` }}
               />
             ))}

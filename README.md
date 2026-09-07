@@ -18,6 +18,35 @@ backend/demo-approval workflow, which live in a different, private repo.
 - [lucide-react](https://lucide.dev/) for icons
 - `next/og` (`ImageResponse`) for the generated social-preview image and
   favicon — no external design tool required
+- [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) (via
+  `next/font/google`) for headings only, alongside Geist Sans for body copy
+
+## Design system notes
+
+- **Color:** a custom `--color-ink` token (`#0a0e1a`, generating `bg-ink` /
+  `text-ink`) is used for dark sections (hero, CTA bands, footer, the
+  Features page intro) instead of a stock `slate-900`, layered with
+  `DarkSectionGlow` (`src/components/dark-section-glow.tsx`) — soft teal/sky
+  radial glows plus a subtle dot-grid texture, purely decorative/`aria-hidden`.
+- **Type:** headings use the `font-heading` utility (Space Grotesk, tight
+  tracking, bold) via the `--font-heading` theme token; body copy stays on
+  Geist Sans with a slightly increased base line-height for readability.
+- **Motion:** `src/components/reveal.tsx` is a small fade-in-on-scroll
+  wrapper (IntersectionObserver-based, no animation library) used on
+  below-the-fold sections. It defaults to fully visible (SSR/no-JS safe) and
+  only ever calls `setState` from inside the observer's callback. A sitewide
+  `prefers-reduced-motion: reduce` rule in `globals.css` collapses all
+  transition/animation durations to near-zero, so reduced-motion users get
+  the same end state instantly, with no animated motion — this covers both
+  `Reveal` and the hover scale/lift effects on buttons and cards.
+- **Mockups:** `MockupFrame` (`src/components/mockups/mockup-frame.tsx`) adds
+  a soft blurred glow behind each mockup and a deeper shadow so they "pop"
+  off the page; the mockups themselves use gradient/teal accents (buttons,
+  avatars, chart bars) rather than plain gray skeletons for a more realistic
+  feel, while remaining clearly captioned as illustrative.
+- **Social proof:** deliberately not added. A "trusted by N facilities"-style
+  claim wasn't included because it would imply real customers/usage this
+  pre-launch site doesn't have — see the task history for this call.
 
 ## Getting started
 
@@ -69,14 +98,17 @@ src/
     sitemap.ts / robots.ts  # SEO metadata routes
   components/
     header.tsx              # sticky nav with mobile menu
-    footer.tsx               # product/legal links + contact
-    logo.tsx                 # shared wordmark + icon mark
-    scroll-pillar.tsx         # decorative scroll-progress "pillar" (see below)
-    hero.tsx                   # homepage hero, includes the dashboard mockup
-    feature-highlights.tsx      # condensed feature grid (Home)
-    feature-detail.tsx           # full grouped feature list (Features page)
-    feature-showcase.tsx          # "See Pyllar in action" mockup showcase (Features page)
-    mockups/                        # illustrative, code-drawn UI mockups (see below)
+    footer.tsx               # product/legal links + contact (dark theme)
+    logo.tsx                  # shared wordmark + icon mark
+    scroll-pillar.tsx          # decorative scroll-progress "pillar" (see below)
+    dark-section-glow.tsx       # shared decorative bg for dark ("ink") sections
+    reveal.tsx                   # fade-in-on-scroll wrapper (see Design system notes)
+    hero.tsx                       # homepage hero, includes the dashboard mockup
+    feature-highlights.tsx          # condensed feature grid (Home)
+    feature-detail.tsx               # full grouped feature list (Features page)
+    feature-showcase.tsx              # "See Pyllar in action" mockup showcase (Features page)
+    platform-showcase.tsx              # full-width "whole platform" mockup section (Home)
+    mockups/                             # illustrative, code-drawn UI mockups (see below)
     security-note.tsx          # "built with security & privacy in mind" section
     testimonial.tsx             # fabricated, clearly-labeled illustrative testimonial
     cta-band.tsx                 # reusable bottom-of-page CTA
@@ -97,6 +129,8 @@ or design tool needed:
 
 - `dashboard-mockup.tsx` — the homepage hero image (an "overview dashboard"
   with stat tiles, a bar chart, and a schedule list).
+- `platform-mockup.tsx` — a larger sidebar + roster-table mockup used in the
+  full-width "Your entire operation, in one view" section on the homepage.
 - `feature-mockups.tsx` — four flagship-feature mockups (youth profile,
   incidents list, scheduling calendar, analytics charts) used in the "See
   Pyllar in action" section on `/features`.

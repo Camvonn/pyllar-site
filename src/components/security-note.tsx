@@ -1,4 +1,5 @@
 import { ShieldCheck } from "lucide-react";
+import { Reveal } from "@/components/reveal";
 
 export function SecurityNote({ compact = false }: { compact?: boolean }) {
   return (
@@ -6,17 +7,17 @@ export function SecurityNote({ compact = false }: { compact?: boolean }) {
       aria-labelledby="security-heading"
       className={compact ? "bg-slate-50 py-16" : "bg-slate-50 py-20 sm:py-24"}
     >
-      <div className="mx-auto max-w-3xl px-6 text-center">
-        <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-teal-600/10 text-teal-700">
+      <Reveal className="mx-auto max-w-3xl px-6 text-center">
+        <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-teal-700 text-white shadow-sm">
           <ShieldCheck className="h-6 w-6" aria-hidden />
         </span>
         <h2
           id="security-heading"
-          className="mt-4 text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl"
+          className="font-heading mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl"
         >
           Built with security and privacy in mind
         </h2>
-        <p className="mt-4 text-slate-600">
+        <p className="mt-4 leading-relaxed text-slate-600">
           Group homes and residential facilities handle some of the most
           sensitive information there is. Pyllar is built around role-based
           access, so staff and administrators only see the records relevant
@@ -29,7 +30,7 @@ export function SecurityNote({ compact = false }: { compact?: boolean }) {
           requirement for your organization, ask us about our roadmap when
           you request a demo.
         </p>
-      </div>
+      </Reveal>
     </section>
   );
 }

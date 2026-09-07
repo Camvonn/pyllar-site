@@ -42,8 +42,10 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
-                className={`transition-colors hover:text-slate-900 ${
-                  active ? "text-slate-900" : ""
+                className={`relative py-1 transition-colors hover:text-slate-900 ${
+                  active
+                    ? "text-slate-900 after:absolute after:-bottom-1 after:left-0 after:right-0 after:h-0.5 after:rounded-full after:bg-gradient-to-r after:from-teal-400 after:to-teal-600"
+                    : ""
                 }`}
               >
                 {link.label}
@@ -55,7 +57,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <Link
             href="/demo"
-            className="hidden rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-teal-700 sm:inline-flex"
+            className="hidden rounded-md bg-gradient-to-r from-teal-500 to-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:scale-[1.03] hover:shadow-md hover:shadow-teal-600/25 active:scale-[0.98] sm:inline-flex"
           >
             Request a Demo
           </Link>

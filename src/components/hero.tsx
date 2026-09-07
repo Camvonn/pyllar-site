@@ -1,40 +1,39 @@
 import Link from "next/link";
 import { DashboardMockup } from "@/components/mockups/dashboard-mockup";
+import { DarkSectionGlow } from "@/components/dark-section-glow";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-slate-900 text-white">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(20,184,166,0.25),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(56,189,248,0.15),transparent_40%)]"
-      />
-      <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 px-6 py-24 sm:py-28 lg:grid-cols-2 lg:py-32">
+    <section className="relative overflow-hidden bg-ink text-white">
+      <DarkSectionGlow />
+      <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 px-6 py-24 sm:py-28 lg:grid-cols-2 lg:py-36">
         <div className="flex flex-col items-start gap-6">
           <span className="rounded-full border border-teal-400/30 bg-teal-400/10 px-3 py-1 text-xs font-medium uppercase tracking-wide text-teal-300">
             Built for group homes &amp; residential youth facilities
           </span>
 
-          <h1 className="max-w-xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-            One system for youth, staff, and every day in between.
+          <h1 className="font-heading max-w-xl text-4xl font-bold tracking-tight text-white sm:text-5xl xl:text-6xl">
+            The operating system for care, not just paperwork.
           </h1>
 
-          <p className="max-w-xl text-lg text-slate-300 sm:text-xl">
+          <p className="max-w-xl text-lg leading-relaxed text-slate-300 sm:text-xl">
             Pyllar brings youth profiles, incidents, medications, scheduling,
             staff compliance, and CARF-oriented reporting into a single,
-            secure portal — so your team spends less time on paperwork and
-            spreadsheets, and more time on care.
+            secure portal — built for how group homes and residential youth
+            facilities actually run, not adapted from generic case-management
+            software.
           </p>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
               href="/demo"
-              className="inline-flex items-center justify-center rounded-md bg-teal-500 px-6 py-3 text-base font-semibold text-slate-950 shadow-lg shadow-teal-500/20 transition-colors hover:bg-teal-400"
+              className="inline-flex items-center justify-center rounded-md bg-teal-500 px-6 py-3 text-base font-semibold text-slate-950 shadow-lg shadow-teal-500/20 transition-all duration-200 hover:scale-[1.02] hover:bg-teal-400 hover:shadow-xl hover:shadow-teal-500/30 active:scale-[0.98]"
             >
               Request a Demo
             </Link>
             <Link
               href="/features"
-              className="inline-flex items-center justify-center rounded-md border border-slate-600 px-6 py-3 text-base font-semibold text-slate-100 transition-colors hover:border-slate-400 hover:bg-white/5"
+              className="inline-flex items-center justify-center rounded-md border border-slate-600 px-6 py-3 text-base font-semibold text-slate-100 transition-all duration-200 hover:scale-[1.02] hover:border-slate-400 hover:bg-white/5 active:scale-[0.98]"
             >
               See What&apos;s Included
             </Link>

@@ -23,12 +23,18 @@ export function MockupFrame({
   children: ReactNode;
 }) {
   return (
-    <figure>
+    <figure className="relative">
+      {/* Soft brand-color glow behind the frame so it "pops" off the page,
+          rather than sitting flat against the background. Decorative only. */}
       <div
         aria-hidden="true"
-        className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm"
+        className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-teal-400/25 via-teal-500/10 to-transparent blur-2xl"
+      />
+      <div
+        aria-hidden="true"
+        className="overflow-hidden rounded-xl border border-slate-200/80 bg-white shadow-[0_20px_50px_-15px_rgba(15,23,42,0.25)] ring-1 ring-black/[0.02]"
       >
-        <div className="flex items-center gap-1.5 border-b border-slate-100 bg-slate-50 px-4 py-2.5">
+        <div className="flex items-center gap-1.5 border-b border-slate-100 bg-gradient-to-b from-slate-50 to-slate-100/60 px-4 py-2.5">
           <span className="h-2.5 w-2.5 rounded-full bg-red-300" />
           <span className="h-2.5 w-2.5 rounded-full bg-amber-300" />
           <span className="h-2.5 w-2.5 rounded-full bg-emerald-300" />
@@ -68,5 +74,17 @@ export function Chip({
     >
       {children}
     </span>
+  );
+}
+
+/**
+ * A small teal "button" shape for mockups, to make them feel more like a
+ * real, clickable UI instead of only gray skeleton lines.
+ */
+export function MockButton({ width = "w-16" }: { width?: string }) {
+  return (
+    <div
+      className={`h-5 rounded-md bg-gradient-to-r from-teal-500 to-teal-600 ${width}`}
+    />
   );
 }
