@@ -21,22 +21,23 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-white/10 bg-ink">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="relative overflow-hidden border-t border-white/[0.07]">
+      <div className="hairline absolute inset-x-0 top-0" />
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2.5">
             <LogoMark />
-            <Wordmark className="text-white" />
+            <Wordmark />
           </Link>
-          <p className="mt-3 max-w-xs text-sm leading-relaxed text-slate-400">
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-500">
             One system for youth, staff, and everyday operations at group
             homes and residential youth facilities.
           </p>
         </div>
 
         <nav aria-label="Product">
-          <h3 className="text-sm font-semibold text-white">Product</h3>
-          <ul className="mt-3 space-y-2 text-sm text-slate-400">
+          <h3 className="eyebrow text-slate-400">Product</h3>
+          <ul className="mt-4 space-y-2.5 text-sm text-slate-500">
             {PRODUCT_LINKS.map((link) => (
               <li key={link.href}>
                 <Link
@@ -51,8 +52,8 @@ export function Footer() {
         </nav>
 
         <nav aria-label="Legal">
-          <h3 className="text-sm font-semibold text-white">Legal</h3>
-          <ul className="mt-3 space-y-2 text-sm text-slate-400">
+          <h3 className="eyebrow text-slate-400">Legal</h3>
+          <ul className="mt-4 space-y-2.5 text-sm text-slate-500">
             {LEGAL_LINKS.map((link) => (
               <li key={link.href}>
                 <Link
@@ -67,8 +68,8 @@ export function Footer() {
         </nav>
 
         <div>
-          <h3 className="text-sm font-semibold text-white">Contact</h3>
-          <p className="mt-3 text-sm text-slate-400">
+          <h3 className="eyebrow text-slate-400">Contact</h3>
+          <p className="mt-4 text-sm">
             <a
               href={`mailto:${CONTACT_EMAIL}`}
               className="font-medium text-teal-400 transition-colors hover:text-teal-300"
@@ -79,8 +80,8 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10 px-6 py-4 text-center text-xs text-slate-500">
-        © {year} Pyllar. All rights reserved.
+      <div className="border-t border-white/[0.07] px-6 py-5 text-center text-xs text-slate-600">
+        © {year} Pyllar Technologies. All rights reserved.
       </div>
     </footer>
   );

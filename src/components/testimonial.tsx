@@ -16,27 +16,38 @@ const EXAMPLE_TESTIMONIAL = {
 
 export function Testimonial() {
   return (
-    <section
-      id="testimonial"
-      className="relative overflow-hidden bg-gradient-to-br from-teal-600 to-teal-800"
-    >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-10 -top-16 select-none font-heading text-[14rem] font-bold leading-none text-white/10"
-      >
-        &ldquo;
+    <section id="testimonial" className="relative py-20 sm:py-24">
+      <div className="mx-auto max-w-4xl px-6">
+        <Reveal>
+          <figure className="glass relative overflow-hidden rounded-3xl px-8 py-14 text-center sm:px-14">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(45,212,191,0.16),transparent_65%)]"
+            />
+            <div
+              aria-hidden
+              className="font-heading pointer-events-none absolute -left-4 -top-10 select-none text-[12rem] leading-none text-white/[0.06]"
+            >
+              &ldquo;
+            </div>
+
+            <blockquote className="relative">
+              <p className="font-heading text-xl font-medium leading-relaxed tracking-tight text-white sm:text-2xl">
+                {EXAMPLE_TESTIMONIAL.quote}
+              </p>
+            </blockquote>
+
+            <figcaption className="relative mt-8">
+              <p className="eyebrow text-teal-300">
+                {EXAMPLE_TESTIMONIAL.name} — {EXAMPLE_TESTIMONIAL.role}
+              </p>
+              <p className="mt-2 text-xs text-slate-500">
+                Illustrative example — not an actual customer quote
+              </p>
+            </figcaption>
+          </figure>
+        </Reveal>
       </div>
-      <Reveal className="relative mx-auto max-w-4xl px-6 py-20 text-center sm:py-24">
-        <p className="font-heading text-2xl font-medium leading-relaxed tracking-tight text-white sm:text-3xl">
-          &ldquo;{EXAMPLE_TESTIMONIAL.quote}&rdquo;
-        </p>
-        <p className="mt-6 text-sm font-semibold uppercase tracking-wide text-teal-100">
-          {EXAMPLE_TESTIMONIAL.name} — {EXAMPLE_TESTIMONIAL.role}
-        </p>
-        <p className="mt-1 text-xs text-teal-200/80">
-          Illustrative example — not an actual customer quote
-        </p>
-      </Reveal>
     </section>
   );
 }

@@ -1,17 +1,33 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------------------
+   Pyllar marketing site — dark "control room" design system.
+
+   The site is dark-first: a single deep background runs the whole page, and
+   sections differentiate themselves with glass surfaces, gradient hairlines,
+   and brand-color glows rather than by alternating light/dark fills.
+   --------------------------------------------------------------------------- */
+
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
+  --background: #05070d;
+  --foreground: #e8ecf5;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  /* A richer, slightly-blue near-black used for dark sections (hero, CTA
-     bands, footer) instead of a flat/stock slate-900, for a more custom,
-     premium feel. Generates bg-ink / text-ink / border-ink utilities. */
-  --color-ink: #0a0e1a;
+
+  /* Deep near-black page base, plus a slightly lifted tone for panels. */
+  --color-ink: #05070d;
+  --color-ink-raised: #0a0f1c;
+
+  /* Primary brand accent (teal) with two supporting accents used sparingly
+     for visual variety — cyan for data/insight surfaces, violet for
+     security/compliance surfaces. */
+  --color-accent: #2dd4bf;
+  --color-accent-cyan: #38bdf8;
+  --color-accent-violet: #a78bfa;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   /* Headings-only display font (see layout.tsx) — generates the
@@ -29,11 +45,179 @@ p {
   letter-spacing: 0.005em;
 }
 
-/* Respect prefers-reduced-motion globally: collapse all transitions/
-   animations to effectively instant, regardless of which component added
-   them (hover scale/lift effects, scroll-reveal fades, etc.). Individual
-   components (e.g. the scroll-pillar) may also have their own explicit
-   reduced-motion handling; this is a sitewide safety net on top of that. */
+::selection {
+  background: rgba(45, 212, 191, 0.3);
+  color: #ffffff;
+}
+
+/* ---------------------------------------------------------------------------
+   Surfaces
+   --------------------------------------------------------------------------- */
+
+/* Translucent "glass" panel that reads as a floating instrument surface over
+   the animated page background. */
+.glass {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.055),
+    rgba(255, 255, 255, 0.015)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(14px);
+}
+
+/* Glass panel that lights up on hover — used for feature/pricing cards. */
+.glass-card {
+  position: relative;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.012)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  transition:
+    transform 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(45, 212, 191, 0.4);
+  box-shadow:
+    0 0 0 1px rgba(45, 212, 191, 0.12),
+    0 18px 50px -20px rgba(45, 212, 191, 0.4);
+}
+
+/* Thin gradient rule used as a section divider instead of a hard border. */
+.hairline {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(45, 212, 191, 0.35),
+    rgba(56, 189, 248, 0.25),
+    transparent
+  );
+}
+
+/* ---------------------------------------------------------------------------
+   Type treatments
+   --------------------------------------------------------------------------- */
+
+/* Headline gradient — a subtle top-lit falloff that gives large display type
+   depth without an image behind it. Deliberately shallow: multi-line headings
+   put later lines at the bottom of the gradient, so the end stop has to stay
+   high-contrast against the dark background. */
+.text-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 40%, #b9c6dc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(100deg, #2dd4bf, #38bdf8 55%, #a78bfa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Small monospace "system label" used for eyebrows and metric captions. */
+.eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------------------
+   Motion
+   --------------------------------------------------------------------------- */
+
+@keyframes aurora-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(4%, -3%, 0) scale(1.08);
+  }
+  66% {
+    transform: translate3d(-3%, 2%, 0) scale(0.96);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Vertical light sweep used inside mockups to suggest live data. */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  15%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(300%);
+    opacity: 0;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-aurora {
+  animation: aurora-drift 26s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 4.5s ease-in-out infinite;
+}
+
+.animate-scanline {
+  animation: scanline 7s ease-in-out infinite;
+}
+
+.animate-marquee {
+  animation: marquee 38s linear infinite;
+}
+
+/* Respect prefers-reduced-motion globally: collapse all transitions and
+   stop all looping decorative animations, regardless of which component
+   added them. Elements still reach their final visible state (see the
+   Reveal component, which defaults to visible). */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -43,12 +227,23 @@ p {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  .animate-aurora,
+  .animate-float-slow,
+  .animate-glow-pulse,
+  .animate-scanline,
+  .animate-marquee {
+    animation: none !important;
+  }
 }
 
-/* Scroll-progress "pillar" indicator (see components/scroll-pillar.tsx). */
+/* ---------------------------------------------------------------------------
+   Scroll-progress "pillar" indicator (see components/scroll-pillar.tsx).
+   --------------------------------------------------------------------------- */
+
 .scroll-pillar-fill {
   transition: transform 150ms linear;
-  box-shadow: 0 0 10px 1px rgba(20, 184, 166, 0.45);
+  box-shadow: 0 0 14px 2px rgba(45, 212, 191, 0.6);
 }
 
 @media (prefers-reduced-motion: reduce) {

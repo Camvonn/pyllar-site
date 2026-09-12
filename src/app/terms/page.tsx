@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <section className="bg-white py-16 sm:py-20">
+    <section className="py-20 sm:py-24">
       <div className="mx-auto max-w-3xl px-6">
-        <h1 className="font-heading text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+        <h1 className="font-heading text-gradient text-3xl font-bold tracking-tight sm:text-4xl">
           Terms of Service
         </h1>
         <p className="mt-2 text-sm text-slate-500">Last updated: —</p>
@@ -26,9 +26,9 @@ export default function TermsPage() {
           </PlaceholderBanner>
         </div>
 
-        <div className="mt-10 space-y-8 text-slate-700">
+        <div className="mt-10 space-y-8 text-slate-400">
           <section>
-            <h2 className="text-lg font-semibold text-slate-900">
+            <h2 className="font-heading text-lg font-semibold text-white">
               Use of this site
             </h2>
             <p className="mt-2 text-sm leading-relaxed">
@@ -40,7 +40,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-lg font-semibold text-slate-900">
+            <h2 className="font-heading text-lg font-semibold text-white">
               No warranty
             </h2>
             <p className="mt-2 text-sm leading-relaxed">
@@ -50,7 +50,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-lg font-semibold text-slate-900">
+            <h2 className="font-heading text-lg font-semibold text-white">
               Changes to these terms
             </h2>
             <p className="mt-2 text-sm leading-relaxed">
@@ -60,7 +60,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-lg font-semibold text-slate-900">
+            <h2 className="font-heading text-lg font-semibold text-white">
               Governing law
             </h2>
             <p className="mt-2 text-sm leading-relaxed">
@@ -69,14 +69,14 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-lg font-semibold text-slate-900">
+            <h2 className="font-heading text-lg font-semibold text-white">
               Contact us
             </h2>
             <p className="mt-2 text-sm leading-relaxed">
               Placeholder. Questions about these terms can be sent to{" "}
               <a
                 href="mailto:hello@pyllar.com"
-                className="font-medium text-teal-700 hover:text-teal-800"
+                className="font-medium text-teal-400 hover:text-teal-300"
               >
                 hello@pyllar.com
               </a>{" "}

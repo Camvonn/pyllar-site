@@ -83,12 +83,12 @@ export function DemoForm() {
     return (
       <div
         role="status"
-        className="rounded-lg border border-teal-200 bg-teal-50 p-6 text-center"
+        className="rounded-2xl border border-teal-400/30 bg-teal-400/[0.08] p-6 text-center shadow-[0_0_40px_-12px_rgba(45,212,191,0.6)]"
       >
-        <h3 className="text-lg font-semibold text-teal-900">
+        <h3 className="font-heading text-lg font-semibold text-white">
           Thanks — we&apos;ve got your request.
         </h3>
-        <p className="mt-2 text-sm text-teal-800">
+        <p className="mt-2 text-sm text-slate-300">
           A member of our team will reach out shortly to schedule your demo.
           Pyllar demos are guided walkthroughs with our team — there&apos;s no
           self-serve sign-up.
@@ -103,7 +103,7 @@ export function DemoForm() {
         <div>
           <label
             htmlFor={`${formId}-name`}
-            className="block text-sm font-medium text-slate-700"
+            className="block text-sm font-medium text-slate-300"
           >
             Full name
           </label>
@@ -117,12 +117,12 @@ export function DemoForm() {
             aria-describedby={
               fieldErrors.name ? `${formId}-name-error` : undefined
             }
-            className="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 text-slate-900 shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
+            className="mt-2 block w-full rounded-lg border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-slate-100 placeholder:text-slate-600 transition-colors focus:border-teal-400/60 focus:bg-white/[0.06] focus:outline-none focus:ring-1 focus:ring-teal-400/40"
           />
           {fieldErrors.name ? (
             <p
               id={`${formId}-name-error`}
-              className="mt-1 text-xs text-red-600"
+              className="mt-1 text-xs text-rose-400"
             >
               {fieldErrors.name}
             </p>
@@ -132,7 +132,7 @@ export function DemoForm() {
         <div>
           <label
             htmlFor={`${formId}-email`}
-            className="block text-sm font-medium text-slate-700"
+            className="block text-sm font-medium text-slate-300"
           >
             Work email
           </label>
@@ -146,12 +146,12 @@ export function DemoForm() {
             aria-describedby={
               fieldErrors.email ? `${formId}-email-error` : undefined
             }
-            className="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 text-slate-900 shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
+            className="mt-2 block w-full rounded-lg border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-slate-100 placeholder:text-slate-600 transition-colors focus:border-teal-400/60 focus:bg-white/[0.06] focus:outline-none focus:ring-1 focus:ring-teal-400/40"
           />
           {fieldErrors.email ? (
             <p
               id={`${formId}-email-error`}
-              className="mt-1 text-xs text-red-600"
+              className="mt-1 text-xs text-rose-400"
             >
               {fieldErrors.email}
             </p>
@@ -162,7 +162,7 @@ export function DemoForm() {
       <div>
         <label
           htmlFor={`${formId}-organization`}
-          className="block text-sm font-medium text-slate-700"
+          className="block text-sm font-medium text-slate-300"
         >
           Organization name
         </label>
@@ -178,12 +178,12 @@ export function DemoForm() {
               ? `${formId}-organization-error`
               : undefined
           }
-          className="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 text-slate-900 shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
+          className="mt-2 block w-full rounded-lg border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-slate-100 placeholder:text-slate-600 transition-colors focus:border-teal-400/60 focus:bg-white/[0.06] focus:outline-none focus:ring-1 focus:ring-teal-400/40"
         />
         {fieldErrors.organization ? (
           <p
             id={`${formId}-organization-error`}
-            className="mt-1 text-xs text-red-600"
+            className="mt-1 text-xs text-rose-400"
           >
             {fieldErrors.organization}
           </p>
@@ -193,51 +193,51 @@ export function DemoForm() {
       <div>
         <label
           htmlFor={`${formId}-phone`}
-          className="block text-sm font-medium text-slate-700"
+          className="block text-sm font-medium text-slate-300"
         >
-          Phone <span className="font-normal text-slate-400">(optional)</span>
+          Phone <span className="font-normal text-slate-500">(optional)</span>
         </label>
         <input
           id={`${formId}-phone`}
           name="phone"
           type="tel"
           autoComplete="tel"
-          className="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 text-slate-900 shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
+          className="mt-2 block w-full rounded-lg border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-slate-100 placeholder:text-slate-600 transition-colors focus:border-teal-400/60 focus:bg-white/[0.06] focus:outline-none focus:ring-1 focus:ring-teal-400/40"
         />
       </div>
 
       <div>
         <label
           htmlFor={`${formId}-notes`}
-          className="block text-sm font-medium text-slate-700"
+          className="block text-sm font-medium text-slate-300"
         >
           Anything we should know?{" "}
-          <span className="font-normal text-slate-400">(optional)</span>
+          <span className="font-normal text-slate-500">(optional)</span>
         </label>
         <textarea
           id={`${formId}-notes`}
           name="notes"
           rows={3}
           placeholder="Number of youth/beds, current tools, timeline, questions..."
-          className="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 text-slate-900 shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
+          className="mt-2 block w-full rounded-lg border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-slate-100 placeholder:text-slate-600 transition-colors focus:border-teal-400/60 focus:bg-white/[0.06] focus:outline-none focus:ring-1 focus:ring-teal-400/40"
         />
       </div>
 
       <div aria-live="polite">
         {status === "error" && errorMessage ? (
-          <p className="text-sm text-red-600">{errorMessage}</p>
+          <p className="text-sm text-rose-400">{errorMessage}</p>
         ) : null}
       </div>
 
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full rounded-md bg-gradient-to-r from-teal-600 to-teal-700 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:scale-[1.01] hover:shadow-md hover:shadow-teal-600/20 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100"
+        className="w-full rounded-full bg-gradient-to-r from-teal-400 to-sky-400 px-4 py-3.5 text-sm font-semibold text-slate-950 shadow-[0_0_28px_-8px_rgba(45,212,191,0.9)] transition-all duration-200 hover:scale-[1.02] hover:shadow-[0_0_40px_-6px_rgba(45,212,191,1)] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100"
       >
         {status === "submitting" ? "Sending..." : "Request a Demo"}
       </button>
 
-      <p className="text-center text-xs text-slate-400">
+      <p className="text-center text-xs text-slate-500">
         This is a request form, not a self-serve sign-up — a member of our
         team reviews every request and follows up personally.
       </p>

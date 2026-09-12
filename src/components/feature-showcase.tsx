@@ -1,5 +1,6 @@
 import { Check } from "lucide-react";
 import { FEATURES } from "@/lib/features";
+import { CATEGORY_ACCENTS } from "@/lib/accents";
 import {
   AnalyticsMockup,
   IncidentsMockup,
@@ -7,6 +8,7 @@ import {
   ScheduleMockup,
 } from "@/components/mockups/feature-mockups";
 import { Reveal } from "@/components/reveal";
+import { SectionHeading } from "@/components/section-heading";
 
 const SHOWCASE = [
   { slug: "youth-management", Mockup: ProfileMockup },
@@ -23,52 +25,52 @@ const SHOWCASE = [
  */
 export function FeatureShowcase() {
   return (
-    <section className="bg-slate-50 py-20 sm:py-28">
+    <section className="relative py-24 sm:py-32">
+      <div className="hairline absolute inset-x-0 top-0" />
       <div className="mx-auto max-w-6xl px-6">
-        <Reveal>
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-heading text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              See Pyllar in action
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-slate-600">
-              The Pyllar product is still being finalized, so these are
-              illustrative UI concepts showing how each part of the workflow
-              comes together — not actual product screenshots.
-            </p>
-          </div>
-        </Reveal>
+        <SectionHeading
+          eyebrow="In action"
+          title="See Pyllar in action"
+          description="The Pyllar product is still being finalized, so these are illustrative UI concepts showing how each part of the workflow comes together — not actual product screenshots."
+        />
 
-        <div className="mt-16 space-y-20">
+        <div className="mt-20 space-y-24">
           {SHOWCASE.map(({ slug, Mockup }, index) => {
             const feature = FEATURES.find((item) => item.slug === slug);
             if (!feature) return null;
+            const accent = CATEGORY_ACCENTS[feature.category];
 
             return (
               <Reveal key={slug}>
-                <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+                <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
                   <div className={index % 2 === 1 ? "lg:order-2" : ""}>
                     <Mockup />
                   </div>
                   <div>
                     <div className="flex items-center gap-3">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-teal-500 to-teal-700 text-white shadow-sm">
-                        <feature.icon className="h-5 w-5" aria-hidden />
+                      <span
+                        className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${accent.gradient} ${accent.glow}`}
+                      >
+                        <feature.icon
+                          className="h-5 w-5 text-slate-950"
+                          aria-hidden
+                        />
                       </span>
-                      <h3 className="font-heading text-xl font-bold text-slate-900">
+                      <h3 className="font-heading text-xl font-bold text-white sm:text-2xl">
                         {feature.title}
                       </h3>
                     </div>
-                    <p className="mt-4 leading-relaxed text-slate-600">
+                    <p className="mt-5 leading-relaxed text-slate-400">
                       {feature.long}
                     </p>
-                    <ul className="mt-4 space-y-2">
+                    <ul className="mt-5 space-y-2.5">
                       {feature.bullets.slice(0, 3).map((bullet) => (
                         <li
                           key={bullet}
-                          className="flex items-start gap-2 text-sm text-slate-600"
+                          className="flex items-start gap-2.5 text-sm text-slate-400"
                         >
                           <Check
-                            className="mt-0.5 h-4 w-4 shrink-0 text-teal-600"
+                            className={`mt-0.5 h-4 w-4 shrink-0 ${accent.text}`}
                             aria-hidden
                           />
                           <span>{bullet}</span>

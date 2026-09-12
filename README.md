@@ -23,14 +23,32 @@ backend/demo-approval workflow, which live in a different, private repo.
 
 ## Design system notes
 
-- **Color:** a custom `--color-ink` token (`#0a0e1a`, generating `bg-ink` /
-  `text-ink`) is used for dark sections (hero, CTA bands, footer, the
-  Features page intro) instead of a stock `slate-900`, layered with
-  `DarkSectionGlow` (`src/components/dark-section-glow.tsx`) — soft teal/sky
-  radial glows plus a subtle dot-grid texture, purely decorative/`aria-hidden`.
+The site is **dark-first**. Rather than alternating light and dark section
+fills, one continuous background runs the whole page and sections differentiate
+themselves with glass surfaces, gradient hairlines, and brand glows.
+
+- **Background:** `SiteBackground` (`src/components/site-background.tsx`) is
+  rendered once in the root layout as a `fixed`, `aria-hidden` layer behind
+  every page. It stacks slow-drifting aurora blobs, a fine technical grid that
+  masks out toward the bottom, a film-grain noise wash, and an edge vignette.
+  `SectionGlow` from the same file adds a localized accent glow to individual
+  sections (hero, CTA bands, page heroes).
+- **Color:** `--color-ink` (`#05070d`) is the page base. Teal
+  (`--color-accent`) is primary, with cyan and violet as supporting accents so
+  the site has variety without losing coherence — feature categories map to
+  those accents via `src/lib/accents.ts` (`care` → teal, `operations` → cyan,
+  `insights` → violet).
+- **Surfaces:** `.glass` and `.glass-card` (in `globals.css`) are the standard
+  panel treatments — translucent gradient fills with `backdrop-filter`, and in
+  the case of `.glass-card`, a lift + accent-glow hover state. `.hairline` is
+  the gradient section divider used instead of hard borders.
 - **Type:** headings use the `font-heading` utility (Space Grotesk, tight
   tracking, bold) via the `--font-heading` theme token; body copy stays on
   Geist Sans with a slightly increased base line-height for readability.
+  `.text-gradient` applies a deliberately *shallow* top-lit falloff to display
+  headings — the end stop has to stay high-contrast because multi-line headings
+  put later lines at the bottom of the gradient. `.eyebrow` is the small
+  monospace, letter-spaced label used above section headings.
 - **Motion:** `src/components/reveal.tsx` is a small fade-in-on-scroll
   wrapper (IntersectionObserver-based, no animation library) used on
   below-the-fold sections. It defaults to fully visible (SSR/no-JS safe) and
@@ -38,12 +56,16 @@ backend/demo-approval workflow, which live in a different, private repo.
   `prefers-reduced-motion: reduce` rule in `globals.css` collapses all
   transition/animation durations to near-zero, so reduced-motion users get
   the same end state instantly, with no animated motion — this covers both
-  `Reveal` and the hover scale/lift effects on buttons and cards.
-- **Mockups:** `MockupFrame` (`src/components/mockups/mockup-frame.tsx`) adds
-  a soft blurred glow behind each mockup and a deeper shadow so they "pop"
-  off the page; the mockups themselves use gradient/teal accents (buttons,
-  avatars, chart bars) rather than plain gray skeletons for a more realistic
-  feel, while remaining clearly captioned as illustrative.
+  `Reveal` and the hover scale/lift effects on buttons and cards. The named
+  looping animations (`animate-aurora`, `animate-float-slow`,
+  `animate-glow-pulse`, `animate-scanline`, `animate-marquee`) are additionally
+  set to `animation: none` under reduced motion so nothing self-plays.
+- **Mockups:** `MockupFrame` (`src/components/mockups/mockup-frame.tsx`) renders
+  a dark product-theme "app window" with a brand-color bloom, a bezel highlight,
+  and a slow light sweep, so it reads as a lit screen floating over the page.
+  The mockups themselves use gradient accents (buttons, avatars, chart bars) and
+  `MockPanel` inner surfaces rather than plain gray skeletons, while remaining
+  clearly captioned as illustrative.
 - **Social proof:** deliberately not added. A "trusted by N facilities"-style
   claim wasn't included because it would imply real customers/usage this
   pre-launch site doesn't have — see the task history for this call.
@@ -103,6 +125,9 @@ src/
     scroll-pillar.tsx          # decorative scroll-progress "pillar" (see below)
     dark-section-glow.tsx       # shared decorative bg for dark ("ink") sections
     reveal.tsx                   # fade-in-on-scroll wrapper (see Design system notes)
+    site-background.tsx           # sitewide animated background + SectionGlow
+    section-heading.tsx            # shared eyebrow + gradient section header
+    page-hero.tsx                   # shared hero band for inner pages
     hero.tsx                       # homepage hero, includes the dashboard mockup
     feature-highlights.tsx          # condensed feature grid (Home)
     feature-detail.tsx               # full grouped feature list (Features page)
@@ -117,6 +142,7 @@ src/
     placeholder-banner.tsx          # "placeholder — replace before launch" banner
   lib/
     features.ts                     # shared feature copy/data used across pages
+    accents.ts                       # per-category accent gradients/glows
 ```
 
 ## Illustrative UI mockups

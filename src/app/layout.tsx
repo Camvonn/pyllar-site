@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ScrollPillar } from "@/components/scroll-pillar";
+import { SiteBackground } from "@/components/site-background";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -67,7 +68,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-white text-slate-900">
+      <body className="flex min-h-full flex-col bg-ink text-slate-200">
+        <SiteBackground />
         <ScrollPillar />
         <Header />
         <main className="flex-1">{children}</main>

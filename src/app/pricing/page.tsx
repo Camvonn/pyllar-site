@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Check } from "lucide-react";
-import { DarkSectionGlow } from "@/components/dark-section-glow";
+import { ArrowRight, Check } from "lucide-react";
+import { PageHero } from "@/components/page-hero";
+import { SectionGlow } from "@/components/site-background";
 import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
@@ -9,6 +10,23 @@ export const metadata: Metadata = {
   description:
     "Pyllar is priced per facility, starting at $299/month. See what's included, optional add-ons, and answers to common pricing questions.",
 };
+
+const TIERS = [
+  {
+    label: "First facility",
+    price: "$299",
+    description: "Everything in Pyllar's core plan for your first location.",
+    accent: "from-teal-300 to-teal-500",
+    text: "text-teal-300",
+  },
+  {
+    label: "Each additional facility",
+    price: "$199",
+    description: "For organizations running more than one facility on Pyllar.",
+    accent: "from-sky-300 to-sky-500",
+    text: "text-sky-300",
+  },
+];
 
 const CORE_INCLUDED = [
   "All 7 core modules: youth management, incident reporting, medications, scheduling, staff records & compliance, finance, and analytics & CARF-oriented reporting",
@@ -84,80 +102,59 @@ const FAQS = [
 export default function PricingPage() {
   return (
     <>
-      <section className="bg-white py-20 sm:py-24">
-        <Reveal className="mx-auto max-w-3xl px-6 text-center">
-          <h1 className="font-heading text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-            Straightforward, per-facility pricing
-          </h1>
-          <p className="mt-4 text-lg leading-relaxed text-slate-600">
-            One price per facility, with each additional facility costing
-            less than the first. Here&apos;s an example of how that looks —
-            your actual quote depends on your size and needs.
-          </p>
-        </Reveal>
-      </section>
+      <PageHero
+        eyebrow="Pricing"
+        title="Straightforward, per-facility pricing"
+        description="One price per facility, with each additional facility costing less than the first. Here's an example of how that looks — your actual quote depends on your size and needs."
+      />
 
-      <section className="bg-slate-50 py-4 sm:py-6">
+      <section className="relative pb-6">
         <Reveal className="mx-auto grid max-w-4xl grid-cols-1 gap-6 px-6 sm:grid-cols-2">
-          <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/70">
+          {TIERS.map((tier) => (
             <div
-              aria-hidden
-              className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-teal-400 to-teal-600"
-            />
-            <p className="text-sm font-semibold uppercase tracking-wide text-teal-700">
-              First facility
-            </p>
-            <p className="mt-2 flex items-baseline gap-1">
-              <span className="font-heading text-4xl font-bold tracking-tight text-slate-900">
-                $299
-              </span>
-              <span className="text-sm text-slate-500">/month</span>
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600">
-              Everything in Pyllar&apos;s core plan for your first location.
-            </p>
-          </div>
-
-          <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/70">
-            <div
-              aria-hidden
-              className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-teal-400 to-teal-600"
-            />
-            <p className="text-sm font-semibold uppercase tracking-wide text-teal-700">
-              Each additional facility
-            </p>
-            <p className="mt-2 flex items-baseline gap-1">
-              <span className="font-heading text-4xl font-bold tracking-tight text-slate-900">
-                $199
-              </span>
-              <span className="text-sm text-slate-500">/month</span>
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600">
-              For organizations running more than one facility on Pyllar.
-            </p>
-          </div>
+              key={tier.label}
+              className="glass-card relative overflow-hidden rounded-2xl p-8"
+            >
+              <div
+                aria-hidden
+                className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${tier.accent}`}
+              />
+              <p className={`eyebrow ${tier.text}`}>{tier.label}</p>
+              <p className="mt-4 flex items-baseline gap-1.5">
+                <span className="font-heading text-5xl font-bold tracking-tight text-white">
+                  {tier.price}
+                </span>
+                <span className="text-sm text-slate-500">/month</span>
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-slate-400">
+                {tier.description}
+              </p>
+            </div>
+          ))}
         </Reveal>
 
-        <p className="mx-auto mt-6 max-w-2xl px-6 text-center text-sm italic text-slate-500">
+        <p className="mx-auto mt-8 max-w-2xl px-6 text-center text-sm italic text-slate-500">
           Example, starting prices shown to illustrate our pricing model —
           not a binding quote. Your actual price depends on facility size,
           seats, and add-ons, and will be confirmed when you request a demo.
         </p>
       </section>
 
-      <section className="bg-white py-16 sm:py-20">
+      <section className="relative py-20">
+        <div className="hairline absolute inset-x-0 top-0" />
         <Reveal className="mx-auto max-w-3xl px-6">
-          <h2 className="font-heading text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          <p className="eyebrow text-teal-400">Core plan</p>
+          <h2 className="font-heading mt-3 text-2xl font-bold tracking-tight text-white sm:text-3xl">
             What&apos;s included
           </h2>
-          <ul className="mt-6 space-y-3">
+          <ul className="mt-8 space-y-3.5">
             {CORE_INCLUDED.map((item) => (
               <li
                 key={item}
-                className="flex items-start gap-3 leading-relaxed text-slate-700"
+                className="flex items-start gap-3 leading-relaxed text-slate-300"
               >
                 <Check
-                  className="mt-0.5 h-5 w-5 shrink-0 text-teal-600"
+                  className="mt-1 h-5 w-5 shrink-0 text-teal-400"
                   aria-hidden
                 />
                 <span>{item}</span>
@@ -167,25 +164,24 @@ export default function PricingPage() {
         </Reveal>
       </section>
 
-      <section className="bg-slate-50 py-16 sm:py-20">
+      <section className="relative py-20">
+        <div className="hairline absolute inset-x-0 top-0" />
         <Reveal className="mx-auto max-w-3xl px-6">
-          <h2 className="font-heading text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          <p className="eyebrow text-sky-400">Optional</p>
+          <h2 className="font-heading mt-3 text-2xl font-bold tracking-tight text-white sm:text-3xl">
             Add-ons
           </h2>
-          <p className="mt-3 text-slate-600">
+          <p className="mt-3 text-slate-400">
             Available on top of the core plan for organizations that need
             them — priced separately, ask us for details.
           </p>
-          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
             {ADD_ONS.map((addOn) => (
-              <div
-                key={addOn.title}
-                className="rounded-xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-lg hover:shadow-slate-200/60"
-              >
-                <h3 className="text-sm font-semibold text-slate-900">
+              <div key={addOn.title} className="glass-card rounded-2xl p-5">
+                <h3 className="font-heading text-sm font-semibold text-white">
                   {addOn.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                <p className="mt-2 text-sm leading-relaxed text-slate-400">
                   {addOn.description}
                 </p>
               </div>
@@ -194,18 +190,20 @@ export default function PricingPage() {
         </Reveal>
       </section>
 
-      <section className="bg-white py-16 sm:py-20">
+      <section className="relative py-20">
+        <div className="hairline absolute inset-x-0 top-0" />
         <Reveal className="mx-auto max-w-3xl px-6">
-          <h2 className="font-heading text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          <p className="eyebrow text-violet-400">Questions</p>
+          <h2 className="font-heading mt-3 text-2xl font-bold tracking-tight text-white sm:text-3xl">
             Frequently asked questions
           </h2>
-          <dl className="mt-8 space-y-8">
+          <dl className="mt-10 space-y-6">
             {FAQS.map((faq) => (
-              <div key={faq.question}>
-                <dt className="text-base font-semibold text-slate-900">
+              <div key={faq.question} className="glass rounded-2xl p-6">
+                <dt className="font-heading text-base font-semibold text-white">
                   {faq.question}
                 </dt>
-                <dd className="mt-2 text-sm leading-relaxed text-slate-600">
+                <dd className="mt-2.5 text-sm leading-relaxed text-slate-400">
                   {faq.answer}
                 </dd>
               </div>
@@ -214,21 +212,25 @@ export default function PricingPage() {
         </Reveal>
       </section>
 
-      <section className="relative overflow-hidden bg-ink py-16 sm:py-20">
-        <DarkSectionGlow />
+      <section className="relative overflow-hidden py-24">
+        <SectionGlow />
         <Reveal className="relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 text-center">
-          <h2 className="font-heading text-2xl font-bold tracking-tight text-white sm:text-3xl">
+          <h2 className="font-heading text-gradient text-3xl font-bold tracking-tight sm:text-[2.6rem]">
             Contact us for a custom quote
           </h2>
-          <p className="max-w-xl leading-relaxed text-slate-300">
+          <p className="max-w-xl leading-relaxed text-slate-400">
             Every organization is a little different — tell us about your
             facility and we&apos;ll put together pricing that fits.
           </p>
           <Link
             href="/demo"
-            className="inline-flex items-center justify-center rounded-md bg-teal-500 px-6 py-3 text-base font-semibold text-slate-950 shadow-lg shadow-teal-500/20 transition-all duration-200 hover:scale-[1.02] hover:bg-teal-400 hover:shadow-xl hover:shadow-teal-500/30 active:scale-[0.98]"
+            className="group mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-400 to-sky-400 px-7 py-3.5 text-base font-semibold text-slate-950 shadow-[0_0_30px_-6px_rgba(45,212,191,0.8)] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_0_45px_-4px_rgba(45,212,191,1)] active:scale-[0.98]"
           >
             Request a Demo
+            <ArrowRight
+              className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
+              aria-hidden
+            />
           </Link>
         </Reveal>
       </section>

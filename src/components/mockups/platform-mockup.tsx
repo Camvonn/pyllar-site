@@ -1,4 +1,10 @@
-import { Chip, MockButton, MockupFrame, SkeletonLine } from "./mockup-frame";
+import {
+  Chip,
+  MockButton,
+  MockPanel,
+  MockupFrame,
+  SkeletonLine,
+} from "./mockup-frame";
 
 const NAV_ITEMS = [
   { label: "Overview", active: true },
@@ -12,10 +18,19 @@ const NAV_ITEMS = [
 ];
 
 const ROSTER = [
-  { tone: "bg-teal-100 text-teal-700", label: "On track" },
-  { tone: "bg-teal-100 text-teal-700", label: "On track" },
-  { tone: "bg-amber-100 text-amber-700", label: "Review" },
-  { tone: "bg-teal-100 text-teal-700", label: "On track" },
+  { tone: "bg-teal-400/15 text-teal-300 ring-teal-400/25", label: "On track" },
+  { tone: "bg-teal-400/15 text-teal-300 ring-teal-400/25", label: "On track" },
+  {
+    tone: "bg-amber-400/15 text-amber-300 ring-amber-400/25",
+    label: "Review",
+  },
+  { tone: "bg-teal-400/15 text-teal-300 ring-teal-400/25", label: "On track" },
+];
+
+const SUMMARY = [
+  { label: "Youth in care", value: "42" },
+  { label: "Facilities", value: "3" },
+  { label: "Open tasks", value: "7" },
 ];
 
 /**
@@ -26,15 +41,15 @@ const ROSTER = [
  */
 export function PlatformMockup() {
   return (
-    <MockupFrame title="Pyllar — app.pyllar.com">
-      <div className="grid grid-cols-[9rem_1fr] gap-4 sm:grid-cols-[10rem_1fr]">
-        <nav className="space-y-1 border-r border-slate-100 pr-3">
+    <MockupFrame title="app.pyllar.com">
+      <div className="grid grid-cols-[9rem_1fr] gap-5 sm:grid-cols-[11rem_1fr]">
+        <nav className="space-y-1 border-r border-white/[0.07] pr-3">
           {NAV_ITEMS.map((item) => (
             <div
               key={item.label}
-              className={`rounded-md px-2.5 py-1.5 text-[11px] font-medium ${
+              className={`rounded-md px-2.5 py-1.5 text-[11px] font-medium transition-colors ${
                 item.active
-                  ? "bg-teal-50 text-teal-700"
+                  ? "bg-gradient-to-r from-teal-400/20 to-transparent text-teal-300 shadow-[inset_2px_0_0_0_rgba(45,212,191,0.9)]"
                   : "text-slate-500"
               }`}
             >
@@ -45,48 +60,41 @@ export function PlatformMockup() {
 
         <div>
           <div className="flex items-center justify-between">
-            <SkeletonLine width="w-32" tone="bg-slate-300" />
+            <SkeletonLine width="w-32" tone="bg-white/20" />
             <MockButton width="w-20" />
           </div>
 
           <div className="mt-4 grid grid-cols-3 gap-3">
-            {[
-              { label: "Youth in care", value: "42" },
-              { label: "Facilities", value: "3" },
-              { label: "Open tasks", value: "7" },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-lg bg-slate-50 p-2.5"
-              >
-                <p className="text-base font-semibold text-slate-900">
+            {SUMMARY.map((stat) => (
+              <MockPanel key={stat.label} className="p-2.5">
+                <p className="font-heading text-base font-bold text-white">
                   {stat.value}
                 </p>
                 <p className="mt-0.5 text-[10px] text-slate-500">
                   {stat.label}
                 </p>
-              </div>
+              </MockPanel>
             ))}
           </div>
 
-          <div className="mt-4 overflow-hidden rounded-lg border border-slate-100">
-            <div className="grid grid-cols-[1fr_auto] gap-3 border-b border-slate-100 bg-slate-50 px-3 py-2 text-[10px] font-semibold text-slate-400">
+          <MockPanel className="mt-4 overflow-hidden">
+            <div className="grid grid-cols-[1fr_auto] gap-3 border-b border-white/[0.07] bg-white/[0.03] px-3 py-2 font-mono text-[9px] uppercase tracking-[0.16em] text-slate-500">
               <span>Youth</span>
               <span>Status</span>
             </div>
             {ROSTER.map((row, index) => (
               <div
                 key={index}
-                className="grid grid-cols-[1fr_auto] items-center gap-3 border-b border-slate-50 px-3 py-2 last:border-0"
+                className="grid grid-cols-[1fr_auto] items-center gap-3 border-b border-white/[0.04] px-3 py-2.5 last:border-0"
               >
-                <div className="flex items-center gap-2">
-                  <div className="h-5 w-5 shrink-0 rounded-full bg-gradient-to-br from-teal-400 to-teal-600" />
+                <div className="flex items-center gap-2.5">
+                  <div className="h-5 w-5 shrink-0 rounded-full bg-gradient-to-br from-teal-300 to-sky-500 shadow-[0_0_10px_-2px_rgba(45,212,191,0.8)]" />
                   <SkeletonLine width="w-20" />
                 </div>
                 <Chip tone={row.tone}>{row.label}</Chip>
               </div>
             ))}
-          </div>
+          </MockPanel>
         </div>
       </div>
     </MockupFrame>

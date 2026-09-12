@@ -22,9 +22,9 @@ export default function OpengraphImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#0f172a",
+          backgroundColor: "#05070d",
           backgroundImage:
-            "radial-gradient(circle at 20% 20%, rgba(20,184,166,0.35), transparent 45%), radial-gradient(circle at 80% 0%, rgba(56,189,248,0.2), transparent 40%)",
+            "radial-gradient(circle at 18% 18%, rgba(45,212,191,0.38), transparent 45%), radial-gradient(circle at 82% 4%, rgba(56,189,248,0.24), transparent 40%), radial-gradient(circle at 65% 95%, rgba(167,139,250,0.2), transparent 45%)",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
