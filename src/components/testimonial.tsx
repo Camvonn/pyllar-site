@@ -22,26 +22,26 @@ export function Testimonial() {
           <figure className="glass relative overflow-hidden rounded-3xl px-8 py-14 text-center sm:px-14">
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(45,212,191,0.16),transparent_65%)]"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(13,148,136,0.08),transparent_65%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(45,212,191,0.16),transparent_65%)]"
             />
             <div
               aria-hidden
-              className="font-heading pointer-events-none absolute -left-4 -top-10 select-none text-[12rem] leading-none text-white/[0.06]"
+              className="font-heading pointer-events-none absolute -top-10 -left-4 text-[12rem] leading-none text-black/[0.05] select-none dark:text-white/[0.06]"
             >
               &ldquo;
             </div>
 
             <blockquote className="relative">
-              <p className="font-heading text-xl font-medium leading-relaxed tracking-tight text-white sm:text-2xl">
+              <p className="font-heading text-fg-strong text-xl leading-relaxed font-medium tracking-tight sm:text-2xl">
                 {EXAMPLE_TESTIMONIAL.quote}
               </p>
             </blockquote>
 
             <figcaption className="relative mt-8">
-              <p className="eyebrow text-teal-300">
+              <p className="eyebrow text-accent">
                 {EXAMPLE_TESTIMONIAL.name} — {EXAMPLE_TESTIMONIAL.role}
               </p>
-              <p className="mt-2 text-xs text-slate-500">
+              <p className="text-fg-subtle mt-2 text-xs">
                 Illustrative example — not an actual customer quote
               </p>
             </figcaption>

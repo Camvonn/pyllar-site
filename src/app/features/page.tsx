@@ -24,7 +24,7 @@ export default function FeaturesPage() {
       >
         <Link
           href="/demo"
-          className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-400 to-sky-400 px-7 py-3.5 text-base font-semibold text-slate-950 shadow-[0_0_30px_-6px_rgba(45,212,191,0.8)] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_0_45px_-4px_rgba(45,212,191,1)] active:scale-[0.98]"
+          className="btn-accent group inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-base font-semibold"
         >
           Request a Demo
           <ArrowRight

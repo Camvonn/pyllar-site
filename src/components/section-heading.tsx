@@ -27,20 +27,20 @@ export function SectionHeading({
       >
         {eyebrow ? (
           <p
-            className={`eyebrow flex items-center gap-2.5 text-teal-400 ${
+            className={`eyebrow text-accent flex items-center gap-2.5 ${
               centered ? "justify-center" : ""
             }`}
           >
-            <span className="h-px w-8 bg-gradient-to-r from-transparent to-teal-400" />
+            <span className="from-accent h-px w-8 bg-gradient-to-l to-transparent" />
             {eyebrow}
-            <span className="h-px w-8 bg-gradient-to-l from-transparent to-teal-400" />
+            <span className="from-accent h-px w-8 bg-gradient-to-r to-transparent" />
           </p>
         ) : null}
-        <h2 className="font-heading text-gradient mt-4 text-3xl font-bold leading-tight tracking-tight sm:text-[2.6rem]">
+        <h2 className="font-heading text-gradient mt-4 text-3xl leading-tight font-bold tracking-tight sm:text-[2.6rem]">
           {title}
         </h2>
         {description ? (
-          <p className="mt-5 text-lg leading-relaxed text-slate-400">
+          <p className="text-fg-muted mt-5 text-lg leading-relaxed">
             {description}
           </p>
         ) : null}

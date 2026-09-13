@@ -14,7 +14,7 @@ export default function PrivacyPage() {
         <h1 className="font-heading text-gradient text-3xl font-bold tracking-tight sm:text-4xl">
           Privacy Policy
         </h1>
-        <p className="mt-2 text-sm text-slate-500">Last updated: —</p>
+        <p className="mt-2 text-fg-subtle text-sm">Last updated: —</p>
 
         <div className="mt-6">
           <PlaceholderBanner>
@@ -27,9 +27,9 @@ export default function PrivacyPage() {
           </PlaceholderBanner>
         </div>
 
-        <div className="mt-10 space-y-8 text-slate-400">
+        <div className="text-fg-muted mt-10 space-y-8">
           <section>
-            <h2 className="font-heading text-lg font-semibold text-white">
+            <h2 className="font-heading text-fg-strong text-lg font-semibold">
               Information we collect
             </h2>
             <p className="mt-2 text-sm leading-relaxed">
@@ -42,7 +42,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="font-heading text-lg font-semibold text-white">
+            <h2 className="font-heading text-fg-strong text-lg font-semibold">
               How we use information
             </h2>
             <p className="mt-2 text-sm leading-relaxed">
@@ -54,7 +54,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="font-heading text-lg font-semibold text-white">
+            <h2 className="font-heading text-fg-strong text-lg font-semibold">
               Data retention &amp; security
             </h2>
             <p className="mt-2 text-sm leading-relaxed">
@@ -65,7 +65,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="font-heading text-lg font-semibold text-white">
+            <h2 className="font-heading text-fg-strong text-lg font-semibold">
               Your choices
             </h2>
             <p className="mt-2 text-sm leading-relaxed">
@@ -76,14 +76,14 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="font-heading text-lg font-semibold text-white">
+            <h2 className="font-heading text-fg-strong text-lg font-semibold">
               Contact us
             </h2>
             <p className="mt-2 text-sm leading-relaxed">
               Placeholder. Questions about this policy can be sent to{" "}
               <a
                 href="mailto:hello@pyllar.com"
-                className="font-medium text-teal-400 hover:text-teal-300"
+                className="text-accent font-medium transition-opacity hover:opacity-80"
               >
                 hello@pyllar.com
               </a>{" "}

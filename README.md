@@ -23,21 +23,57 @@ backend/demo-approval workflow, which live in a different, private repo.
 
 ## Design system notes
 
-The site is **dark-first**. Rather than alternating light and dark section
-fills, one continuous background runs the whole page and sections differentiate
-themselves with glass surfaces, gradient hairlines, and brand glows.
+The site ships **both a light and a dark theme**. Rather than alternating light
+and dark section fills within a page, one continuous background runs the whole
+page and sections differentiate themselves with glass surfaces, gradient
+hairlines, and brand glows.
+
+### Theming
+
+Theme is managed by [`next-themes`](https://github.com/pacocoursey/next-themes)
+(`components/theme-provider.tsx`), which sets `class="dark"` on `<html>` and
+persists an explicit choice to localStorage. New visitors follow their OS
+preference (`defaultTheme="system"`). The provider injects a blocking script so
+the correct theme is applied before first paint — that's why `<html>` carries
+`suppressHydrationWarning`.
+
+Components **do not** use `dark:` variants for ordinary color work. Instead they
+use semantic tokens whose values are swapped once, in `globals.css`:
+
+| Token | Use |
+| --- | --- |
+| `bg-surface` / `bg-surface-raised` | page and panel fills |
+| `text-fg-strong` | headings and emphasized text |
+| `text-fg` | default body copy |
+| `text-fg-muted` | secondary copy |
+| `text-fg-subtle` | captions, labels, disabled |
+| `border-line` / `border-line-strong` | hairlines and borders |
+| `text-accent` (+ `-cyan`, `-violet`) | brand accents |
+| `bg-mock-*` / `border-mock-line` | interior of the product mockups |
+
+`dark:` is reserved for the cases a single token can't express — gradients,
+glows, shadows, and blend modes. Note that accent values are *not* the same hue
+in both themes: light mode uses deeper shades (teal-600 rather than teal-400)
+because the bright values used on near-black are illegible on white.
+
+The theme switch itself (`components/theme-toggle.tsx`) renders both icons and
+lets CSS pick, rather than gating on a mounted flag — identical server and
+client markup means no hydration mismatch and no icon pop-in.
 
 - **Background:** `SiteBackground` (`src/components/site-background.tsx`) is
   rendered once in the root layout as a `fixed`, `aria-hidden` layer behind
   every page. It stacks slow-drifting aurora blobs, a fine technical grid that
   masks out toward the bottom, a film-grain noise wash, and an edge vignette.
-  `SectionGlow` from the same file adds a localized accent glow to individual
-  sections (hero, CTA bands, page heroes).
-- **Color:** `--color-ink` (`#05070d`) is the page base. Teal
-  (`--color-accent`) is primary, with cyan and violet as supporting accents so
-  the site has variety without losing coherence — feature categories map to
-  those accents via `src/lib/accents.ts` (`care` → teal, `operations` → cyan,
-  `insights` → violet).
+  Each layer's colors are theme-dependent, so they live as classes in
+  `globals.css` (`.site-aurora`, `.site-grid`, `.site-noise`, `.site-vignette`)
+  rather than as inline styles. `SectionGlow` from the same file adds a
+  localized accent glow to individual sections (hero, CTA bands, page heroes).
+- **Color:** teal is primary, with cyan and violet as supporting accents so the
+  site has variety without losing coherence — feature categories map to those
+  accents via `src/lib/accents.ts` (`care` → teal, `operations` → cyan,
+  `insights` → violet). Each entry there carries both themes, including the
+  glyph color, since light mode needs white glyphs on a deep tile and dark mode
+  needs near-black glyphs on a bright one.
 - **Surfaces:** `.glass` and `.glass-card` (in `globals.css`) are the standard
   panel treatments — translucent gradient fills with `backdrop-filter`, and in
   the case of `.glass-card`, a lift + accent-glow hover state. `.hairline` is
@@ -125,6 +161,8 @@ src/
     scroll-pillar.tsx          # decorative scroll-progress "pillar" (see below)
     dark-section-glow.tsx       # shared decorative bg for dark ("ink") sections
     reveal.tsx                   # fade-in-on-scroll wrapper (see Design system notes)
+    theme-provider.tsx            # next-themes wrapper (keeps root layout a server component)
+    theme-toggle.tsx               # header light/dark switch
     site-background.tsx           # sitewide animated background + SectionGlow
     section-heading.tsx            # shared eyebrow + gradient section header
     page-hero.tsx                   # shared hero band for inner pages

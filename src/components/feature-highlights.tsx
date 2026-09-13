@@ -29,14 +29,14 @@ export function FeatureHighlights() {
                     className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${accent.gradient} ${accent.glow} transition-transform duration-300 group-hover:scale-110`}
                   >
                     <feature.icon
-                      className="h-6 w-6 text-slate-950"
+                      className={`h-6 w-6 ${accent.icon}`}
                       aria-hidden
                     />
                   </div>
-                  <h3 className="font-heading mt-5 text-lg font-semibold text-white">
+                  <h3 className="font-heading text-fg-strong mt-5 text-lg font-semibold">
                     {feature.title}
                   </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-slate-400">
+                  <p className="text-fg-muted mt-2.5 text-sm leading-relaxed">
                     {feature.short}
                   </p>
                 </div>
@@ -48,7 +48,7 @@ export function FeatureHighlights() {
         <div className="mt-14 text-center">
           <Link
             href="/features"
-            className="glass group inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-slate-200 transition-all duration-200 hover:border-teal-400/40 hover:text-white"
+            className="glass group text-fg hover:border-accent/40 hover:text-fg-strong inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200"
           >
             See the full feature list
             <ArrowRight

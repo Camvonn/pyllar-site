@@ -66,10 +66,10 @@ export function ScrollPillar() {
       role="presentation"
       className="pointer-events-none fixed top-24 bottom-24 left-6 z-30 hidden w-[6px] md:block"
     >
-      <div className="relative h-full w-full overflow-hidden rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-sm">
+      <div className="border-line relative h-full w-full overflow-hidden rounded-full border bg-black/[0.04] backdrop-blur-sm dark:bg-white/[0.04]">
         <div
           ref={fillRef}
-          className="scroll-pillar-fill absolute inset-0 origin-bottom rounded-full bg-gradient-to-t from-teal-500 via-teal-300 to-sky-300"
+          className="scroll-pillar-fill absolute inset-0 origin-bottom rounded-full bg-gradient-to-t from-teal-600 via-teal-500 to-sky-400 dark:from-teal-500 dark:via-teal-300 dark:to-sky-300"
           style={{ transform: "scaleY(var(--scroll-progress, 0))" }}
         />
       </div>

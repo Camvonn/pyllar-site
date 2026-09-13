@@ -24,17 +24,17 @@ export function PageHero({
       <SectionGlow tone={tone} />
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
         {eyebrow ? (
-          <p className="eyebrow flex items-center justify-center gap-2.5 text-teal-400">
-            <span className="h-px w-8 bg-gradient-to-r from-transparent to-teal-400" />
+          <p className="eyebrow text-accent flex items-center justify-center gap-2.5">
+            <span className="from-accent h-px w-8 bg-gradient-to-l to-transparent" />
             {eyebrow}
-            <span className="h-px w-8 bg-gradient-to-l from-transparent to-teal-400" />
+            <span className="from-accent h-px w-8 bg-gradient-to-r to-transparent" />
           </p>
         ) : null}
-        <h1 className="font-heading text-gradient mt-5 text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.5rem]">
+        <h1 className="font-heading text-gradient mt-5 text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-[3.5rem]">
           {title}
         </h1>
         {description ? (
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl">
+          <p className="text-fg-muted mx-auto mt-6 max-w-2xl text-lg leading-relaxed sm:text-xl">
             {description}
           </p>
         ) : null}

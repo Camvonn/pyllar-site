@@ -52,22 +52,22 @@ export function FeatureShowcase() {
                         className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${accent.gradient} ${accent.glow}`}
                       >
                         <feature.icon
-                          className="h-5 w-5 text-slate-950"
+                          className={`h-5 w-5 ${accent.icon}`}
                           aria-hidden
                         />
                       </span>
-                      <h3 className="font-heading text-xl font-bold text-white sm:text-2xl">
+                      <h3 className="font-heading text-fg-strong text-xl font-bold sm:text-2xl">
                         {feature.title}
                       </h3>
                     </div>
-                    <p className="mt-5 leading-relaxed text-slate-400">
+                    <p className="text-fg-muted mt-5 leading-relaxed">
                       {feature.long}
                     </p>
                     <ul className="mt-5 space-y-2.5">
                       {feature.bullets.slice(0, 3).map((bullet) => (
                         <li
                           key={bullet}
-                          className="flex items-start gap-2.5 text-sm text-slate-400"
+                          className="text-fg-muted flex items-start gap-2.5 text-sm"
                         >
                           <Check
                             className={`mt-0.5 h-4 w-4 shrink-0 ${accent.text}`}

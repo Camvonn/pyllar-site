@@ -21,7 +21,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden border-t border-white/[0.07]">
+    <footer className="border-line relative overflow-hidden border-t">
       <div className="hairline absolute inset-x-0 top-0" />
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div>
@@ -29,20 +29,20 @@ export function Footer() {
             <LogoMark />
             <Wordmark />
           </Link>
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-500">
+          <p className="text-fg-muted mt-4 max-w-xs text-sm leading-relaxed">
             One system for youth, staff, and everyday operations at group
             homes and residential youth facilities.
           </p>
         </div>
 
         <nav aria-label="Product">
-          <h3 className="eyebrow text-slate-400">Product</h3>
-          <ul className="mt-4 space-y-2.5 text-sm text-slate-500">
+          <h3 className="eyebrow text-fg-subtle">Product</h3>
+          <ul className="text-fg-muted mt-4 space-y-2.5 text-sm">
             {PRODUCT_LINKS.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="transition-colors hover:text-white"
+                  className="hover:text-fg-strong transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -52,13 +52,13 @@ export function Footer() {
         </nav>
 
         <nav aria-label="Legal">
-          <h3 className="eyebrow text-slate-400">Legal</h3>
-          <ul className="mt-4 space-y-2.5 text-sm text-slate-500">
+          <h3 className="eyebrow text-fg-subtle">Legal</h3>
+          <ul className="text-fg-muted mt-4 space-y-2.5 text-sm">
             {LEGAL_LINKS.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="transition-colors hover:text-white"
+                  className="hover:text-fg-strong transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -68,11 +68,11 @@ export function Footer() {
         </nav>
 
         <div>
-          <h3 className="eyebrow text-slate-400">Contact</h3>
+          <h3 className="eyebrow text-fg-subtle">Contact</h3>
           <p className="mt-4 text-sm">
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="font-medium text-teal-400 transition-colors hover:text-teal-300"
+              className="text-accent font-medium transition-opacity hover:opacity-80"
             >
               {CONTACT_EMAIL}
             </a>
@@ -80,7 +80,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/[0.07] px-6 py-5 text-center text-xs text-slate-600">
+      <div className="border-line text-fg-subtle border-t px-6 py-5 text-center text-xs">
         © {year} Pyllar Technologies. All rights reserved.
       </div>
     </footer>

@@ -1,32 +1,119 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Pyllar marketing site — dark "control room" design system.
+   Pyllar marketing site — themed "control room" design system.
 
-   The site is dark-first: a single deep background runs the whole page, and
-   sections differentiate themselves with glass surfaces, gradient hairlines,
-   and brand-color glows rather than by alternating light/dark fills.
+   The site ships both a light and a dark theme. Rather than doubling every
+   utility with a `dark:` variant, components use *semantic* color tokens
+   (`text-fg-muted`, `border-line`, `bg-surface`, `text-accent`, …) whose raw
+   values are swapped once, here, per theme. Anything that can't be expressed
+   as a single token — glass surfaces, gradients, glows, the page background —
+   gets an explicit `.dark` override further down.
+
+   Theme is applied by next-themes as a `class="dark"` on <html> (see
+   components/theme-provider.tsx), which is what the `dark` variant below
+   keys off.
    --------------------------------------------------------------------------- */
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #05070d;
-  --foreground: #e8ecf5;
+  color-scheme: light;
+
+  /* Page + panel fills */
+  --surface: #ffffff;
+  --surface-raised: #f6f8fc;
+
+  /* Text, strongest to faintest */
+  --fg-strong: #0a1020;
+  --fg: #2f3d52;
+  --fg-muted: #51617a;
+  --fg-subtle: #78879e;
+
+  /* Hairlines and borders */
+  --line: rgba(10, 16, 32, 0.1);
+  --line-strong: rgba(10, 16, 32, 0.16);
+
+  /* Brand accents. Light mode needs materially darker values than dark mode
+     to stay legible against a white page. */
+  --accent: #0d9488;
+  --accent-soft: #14b8a6;
+  --accent-cyan: #0284c7;
+  --accent-violet: #7c3aed;
+
+  /* Alpha-matched accent washes, used for tinted fills and rings. */
+  --accent-wash: rgba(13, 148, 136, 0.1);
+  --accent-ring: rgba(13, 148, 136, 0.28);
+  --accent-glow: rgba(13, 148, 136, 0.35);
+
+  /* Logo mark gradient stops (see components/logo.tsx). */
+  --logo-start: #0d9488;
+  --logo-mid: #14b8a6;
+  --logo-end: #0284c7;
+
+  /* Illustrative product mockups (see components/mockups/). */
+  --mock-bg: #ffffff;
+  --mock-panel: rgba(10, 16, 32, 0.03);
+  --mock-line: rgba(10, 16, 32, 0.09);
+  --mock-chrome: rgba(10, 16, 32, 0.025);
+  --mock-skeleton: rgba(10, 16, 32, 0.13);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --surface: #05070d;
+  --surface-raised: #0a0f1c;
+
+  --fg-strong: #ffffff;
+  --fg: #cbd5e5;
+  --fg-muted: #94a3b8;
+  --fg-subtle: #6b7a91;
+
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.16);
+
+  --accent: #2dd4bf;
+  --accent-soft: #5eead4;
+  --accent-cyan: #38bdf8;
+  --accent-violet: #a78bfa;
+
+  --accent-wash: rgba(45, 212, 191, 0.12);
+  --accent-ring: rgba(45, 212, 191, 0.3);
+  --accent-glow: rgba(45, 212, 191, 0.75);
+
+  --logo-start: #2dd4bf;
+  --logo-mid: #5eead4;
+  --logo-end: #7dd3fc;
+
+  --mock-bg: #080c17;
+  --mock-panel: rgba(255, 255, 255, 0.025);
+  --mock-line: rgba(255, 255, 255, 0.07);
+  --mock-chrome: rgba(255, 255, 255, 0.02);
+  --mock-skeleton: rgba(255, 255, 255, 0.12);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
 
-  /* Deep near-black page base, plus a slightly lifted tone for panels. */
-  --color-ink: #05070d;
-  --color-ink-raised: #0a0f1c;
+  --color-fg-strong: var(--fg-strong);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
 
-  /* Primary brand accent (teal) with two supporting accents used sparingly
-     for visual variety — cyan for data/insight surfaces, violet for
-     security/compliance surfaces. */
-  --color-accent: #2dd4bf;
-  --color-accent-cyan: #38bdf8;
-  --color-accent-violet: #a78bfa;
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-accent-violet: var(--accent-violet);
+
+  --color-mock-bg: var(--mock-bg);
+  --color-mock-panel: var(--mock-panel);
+  --color-mock-line: var(--mock-line);
+  --color-mock-skeleton: var(--mock-skeleton);
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -36,8 +123,8 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--surface);
+  color: var(--fg);
   line-height: 1.6;
 }
 
@@ -46,8 +133,8 @@ p {
 }
 
 ::selection {
-  background: rgba(45, 212, 191, 0.3);
-  color: #ffffff;
+  background: var(--accent-ring);
+  color: var(--fg-strong);
 }
 
 /* ---------------------------------------------------------------------------
@@ -55,15 +142,27 @@ p {
    --------------------------------------------------------------------------- */
 
 /* Translucent "glass" panel that reads as a floating instrument surface over
-   the animated page background. */
+   the page background. In light mode it leans on a near-white fill plus a
+   soft shadow (translucent white over white reads as nothing); in dark mode
+   it's a true translucent white wash. */
 .glass {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(246, 248, 252, 0.75)
+  );
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(10, 16, 32, 0.04);
+  backdrop-filter: blur(14px);
+}
+
+.dark .glass {
   background: linear-gradient(
     145deg,
     rgba(255, 255, 255, 0.055),
     rgba(255, 255, 255, 0.015)
   );
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  backdrop-filter: blur(14px);
+  box-shadow: none;
 }
 
 /* Glass panel that lights up on hover — used for feature/pricing cards. */
@@ -71,10 +170,11 @@ p {
   position: relative;
   background: linear-gradient(
     145deg,
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0.012)
+    rgba(255, 255, 255, 0.92),
+    rgba(246, 248, 252, 0.7)
   );
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(10, 16, 32, 0.04);
   backdrop-filter: blur(14px);
   transition:
     transform 300ms ease,
@@ -82,12 +182,21 @@ p {
     box-shadow 300ms ease;
 }
 
+.dark .glass-card {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.012)
+  );
+  box-shadow: none;
+}
+
 .glass-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(45, 212, 191, 0.4);
+  border-color: var(--accent-ring);
   box-shadow:
-    0 0 0 1px rgba(45, 212, 191, 0.12),
-    0 18px 50px -20px rgba(45, 212, 191, 0.4);
+    0 0 0 1px var(--accent-wash),
+    0 18px 50px -20px var(--accent-glow);
 }
 
 /* Thin gradient rule used as a section divider instead of a hard border. */
@@ -96,9 +205,82 @@ p {
   background: linear-gradient(
     to right,
     transparent,
-    rgba(45, 212, 191, 0.35),
-    rgba(56, 189, 248, 0.25),
+    var(--accent-ring),
     transparent
+  );
+}
+
+/* ---------------------------------------------------------------------------
+   Sitewide background layers (see components/site-background.tsx)
+
+   Defined here rather than inline so each layer can swap wholesale per theme:
+   light mode uses pale brand washes on white with faint dark grid lines,
+   dark mode uses saturated glows on near-black with faint light grid lines.
+   --------------------------------------------------------------------------- */
+
+.site-aurora {
+  background-image:
+    radial-gradient(circle at 15% 12%, rgba(13, 148, 136, 0.12), transparent 42%),
+    radial-gradient(circle at 82% 8%, rgba(2, 132, 199, 0.1), transparent 38%),
+    radial-gradient(circle at 68% 62%, rgba(124, 58, 237, 0.07), transparent 42%),
+    radial-gradient(circle at 25% 82%, rgba(13, 148, 136, 0.07), transparent 45%);
+}
+
+.dark .site-aurora {
+  background-image:
+    radial-gradient(circle at 15% 12%, rgba(45, 212, 191, 0.28), transparent 42%),
+    radial-gradient(circle at 82% 8%, rgba(56, 189, 248, 0.22), transparent 38%),
+    radial-gradient(circle at 68% 62%, rgba(167, 139, 250, 0.16), transparent 42%),
+    radial-gradient(circle at 25% 82%, rgba(45, 212, 191, 0.14), transparent 45%);
+}
+
+.site-grid {
+  opacity: 0.5;
+  background-image:
+    linear-gradient(rgba(10, 16, 32, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 16, 32, 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 55%,
+    transparent 100%
+  );
+}
+
+.dark .site-grid {
+  opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(148, 190, 220, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 190, 220, 0.5) 1px, transparent 1px);
+}
+
+.site-noise {
+  opacity: 0.02;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.dark .site-noise {
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+}
+
+/* Edge falloff that keeps text contrast high toward the page margins. */
+.site-vignette {
+  background-image: radial-gradient(
+    ellipse 90% 70% at 50% 30%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.75) 100%
+  );
+}
+
+.dark .site-vignette {
+  background-image: radial-gradient(
+    ellipse 90% 70% at 50% 30%,
+    transparent 40%,
+    rgba(5, 7, 13, 0.85) 100%
   );
 }
 
@@ -109,19 +291,31 @@ p {
 /* Headline gradient — a subtle top-lit falloff that gives large display type
    depth without an image behind it. Deliberately shallow: multi-line headings
    put later lines at the bottom of the gradient, so the end stop has to stay
-   high-contrast against the dark background. */
+   high-contrast against the page. */
 .text-gradient {
-  background: linear-gradient(180deg, #ffffff 0%, #ffffff 40%, #b9c6dc 100%);
+  background: linear-gradient(180deg, #0a1020 0%, #0a1020 40%, #44546f 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
+.dark .text-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 40%, #b9c6dc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
 .text-gradient-accent {
-  background: linear-gradient(100deg, #2dd4bf, #38bdf8 55%, #a78bfa);
+  background: linear-gradient(100deg, #0d9488, #0284c7 55%, #7c3aed);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.dark .text-gradient-accent {
+  background: linear-gradient(100deg, #2dd4bf, #38bdf8 55%, #a78bfa);
+  -webkit-background-clip: text;
+  background-clip: text;
 }
 
 /* Small monospace "system label" used for eyebrows and metric captions. */
@@ -130,6 +324,40 @@ p {
   font-size: 0.6875rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------------------
+   Accent-tinted button/glow helpers
+   --------------------------------------------------------------------------- */
+
+/* Primary call-to-action. The gradient and glow both shift per theme so the
+   button stays vivid on white without blowing out. */
+.btn-accent {
+  background: linear-gradient(to right, #0d9488, #0284c7);
+  color: #ffffff;
+  box-shadow: 0 10px 30px -10px rgba(13, 148, 136, 0.7);
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.dark .btn-accent {
+  background: linear-gradient(to right, #2dd4bf, #38bdf8);
+  color: #04121b;
+  box-shadow: 0 0 30px -6px rgba(45, 212, 191, 0.8);
+}
+
+.btn-accent:hover {
+  transform: scale(1.03);
+  box-shadow: 0 14px 40px -8px rgba(13, 148, 136, 0.85);
+}
+
+.dark .btn-accent:hover {
+  box-shadow: 0 0 45px -4px rgba(45, 212, 191, 1);
+}
+
+.btn-accent:active {
+  transform: scale(0.98);
 }
 
 /* ---------------------------------------------------------------------------
@@ -243,7 +471,7 @@ p {
 
 .scroll-pillar-fill {
   transition: transform 150ms linear;
-  box-shadow: 0 0 14px 2px rgba(45, 212, 191, 0.6);
+  box-shadow: 0 0 14px 2px var(--accent-glow);
 }
 
 @media (prefers-reduced-motion: reduce) {

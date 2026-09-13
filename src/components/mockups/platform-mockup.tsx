@@ -17,14 +17,16 @@ const NAV_ITEMS = [
   { label: "Reports" },
 ];
 
+const ON_TRACK =
+  "bg-teal-500/12 text-teal-700 ring-teal-500/25 dark:bg-teal-400/15 dark:text-teal-300 dark:ring-teal-400/25";
+const REVIEW =
+  "bg-amber-500/12 text-amber-700 ring-amber-500/25 dark:bg-amber-400/15 dark:text-amber-300 dark:ring-amber-400/25";
+
 const ROSTER = [
-  { tone: "bg-teal-400/15 text-teal-300 ring-teal-400/25", label: "On track" },
-  { tone: "bg-teal-400/15 text-teal-300 ring-teal-400/25", label: "On track" },
-  {
-    tone: "bg-amber-400/15 text-amber-300 ring-amber-400/25",
-    label: "Review",
-  },
-  { tone: "bg-teal-400/15 text-teal-300 ring-teal-400/25", label: "On track" },
+  { tone: ON_TRACK, label: "On track" },
+  { tone: ON_TRACK, label: "On track" },
+  { tone: REVIEW, label: "Review" },
+  { tone: ON_TRACK, label: "On track" },
 ];
 
 const SUMMARY = [
@@ -43,14 +45,14 @@ export function PlatformMockup() {
   return (
     <MockupFrame title="app.pyllar.com">
       <div className="grid grid-cols-[9rem_1fr] gap-5 sm:grid-cols-[11rem_1fr]">
-        <nav className="space-y-1 border-r border-white/[0.07] pr-3">
+        <nav className="border-mock-line space-y-1 border-r pr-3">
           {NAV_ITEMS.map((item) => (
             <div
               key={item.label}
               className={`rounded-md px-2.5 py-1.5 text-[11px] font-medium transition-colors ${
                 item.active
-                  ? "bg-gradient-to-r from-teal-400/20 to-transparent text-teal-300 shadow-[inset_2px_0_0_0_rgba(45,212,191,0.9)]"
-                  : "text-slate-500"
+                  ? "bg-gradient-to-r from-teal-500/20 to-transparent text-teal-700 shadow-[inset_2px_0_0_0_var(--accent)] dark:from-teal-400/20 dark:text-teal-300"
+                  : "text-fg-subtle"
               }`}
             >
               {item.label}
@@ -60,17 +62,17 @@ export function PlatformMockup() {
 
         <div>
           <div className="flex items-center justify-between">
-            <SkeletonLine width="w-32" tone="bg-white/20" />
+            <SkeletonLine width="w-32" />
             <MockButton width="w-20" />
           </div>
 
           <div className="mt-4 grid grid-cols-3 gap-3">
             {SUMMARY.map((stat) => (
               <MockPanel key={stat.label} className="p-2.5">
-                <p className="font-heading text-base font-bold text-white">
+                <p className="font-heading text-fg-strong text-base font-bold">
                   {stat.value}
                 </p>
-                <p className="mt-0.5 text-[10px] text-slate-500">
+                <p className="text-fg-subtle mt-0.5 text-[10px]">
                   {stat.label}
                 </p>
               </MockPanel>
@@ -78,17 +80,17 @@ export function PlatformMockup() {
           </div>
 
           <MockPanel className="mt-4 overflow-hidden">
-            <div className="grid grid-cols-[1fr_auto] gap-3 border-b border-white/[0.07] bg-white/[0.03] px-3 py-2 font-mono text-[9px] uppercase tracking-[0.16em] text-slate-500">
+            <div className="border-mock-line text-fg-subtle grid grid-cols-[1fr_auto] gap-3 border-b bg-black/[0.02] px-3 py-2 font-mono text-[9px] tracking-[0.16em] uppercase dark:bg-white/[0.03]">
               <span>Youth</span>
               <span>Status</span>
             </div>
             {ROSTER.map((row, index) => (
               <div
                 key={index}
-                className="grid grid-cols-[1fr_auto] items-center gap-3 border-b border-white/[0.04] px-3 py-2.5 last:border-0"
+                className="border-mock-line grid grid-cols-[1fr_auto] items-center gap-3 border-b px-3 py-2.5 last:border-0"
               >
                 <div className="flex items-center gap-2.5">
-                  <div className="h-5 w-5 shrink-0 rounded-full bg-gradient-to-br from-teal-300 to-sky-500 shadow-[0_0_10px_-2px_rgba(45,212,191,0.8)]" />
+                  <div className="h-5 w-5 shrink-0 rounded-full bg-gradient-to-br from-teal-400 to-sky-600 shadow-[0_0_10px_-2px_var(--accent-glow)]" />
                   <SkeletonLine width="w-20" />
                 </div>
                 <Chip tone={row.tone}>{row.label}</Chip>

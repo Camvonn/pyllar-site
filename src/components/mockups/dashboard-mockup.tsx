@@ -4,20 +4,20 @@ const STATS = [
   {
     label: "Youth in care",
     value: "42",
-    bar: "from-teal-400 to-teal-300",
-    text: "text-teal-300",
+    bar: "from-teal-500 to-teal-400 dark:from-teal-400 dark:to-teal-300",
+    text: "text-teal-600 dark:text-teal-300",
   },
   {
     label: "Open incidents",
     value: "3",
-    bar: "from-amber-400 to-amber-300",
-    text: "text-amber-300",
+    bar: "from-amber-500 to-amber-400 dark:from-amber-400 dark:to-amber-300",
+    text: "text-amber-600 dark:text-amber-300",
   },
   {
     label: "Meds due today",
     value: "12",
-    bar: "from-sky-400 to-sky-300",
-    text: "text-sky-300",
+    bar: "from-sky-500 to-sky-400 dark:from-sky-400 dark:to-sky-300",
+    text: "text-sky-600 dark:text-sky-300",
   },
 ];
 
@@ -38,7 +38,7 @@ export function DashboardMockup() {
   return (
     <MockupFrame title="app.pyllar.com/overview">
       <div className="flex items-center justify-between">
-        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+        <p className="text-fg-subtle font-mono text-[10px] tracking-[0.18em] uppercase">
           This week
         </p>
         <MockButton width="w-20" />
@@ -53,7 +53,7 @@ export function DashboardMockup() {
             <p className={`font-heading text-xl font-bold ${stat.text}`}>
               {stat.value}
             </p>
-            <p className="mt-1 text-[10px] leading-tight text-slate-500">
+            <p className="text-fg-subtle mt-1 text-[10px] leading-tight">
               {stat.label}
             </p>
           </MockPanel>
@@ -62,14 +62,14 @@ export function DashboardMockup() {
 
       <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
         <MockPanel className="p-3">
-          <p className="text-[10px] font-medium text-slate-400">
+          <p className="text-fg-muted text-[10px] font-medium">
             Incident trends
           </p>
           <div className="mt-3 flex h-20 items-end gap-1.5">
             {CHART_BARS.map((height, index) => (
               <div
                 key={index}
-                className="flex-1 rounded-t bg-gradient-to-t from-teal-500/30 via-teal-400 to-sky-300 shadow-[0_0_12px_-2px_rgba(45,212,191,0.7)]"
+                className="flex-1 rounded-t bg-gradient-to-t from-teal-600 via-teal-500 to-sky-400 shadow-[0_4px_10px_-3px_rgba(13,148,136,0.6)] dark:from-teal-500/30 dark:via-teal-400 dark:to-sky-300 dark:shadow-[0_0_12px_-2px_rgba(45,212,191,0.7)]"
                 style={{ height: `${height}%` }}
               />
             ))}
@@ -77,14 +77,14 @@ export function DashboardMockup() {
         </MockPanel>
 
         <MockPanel className="p-3">
-          <p className="text-[10px] font-medium text-slate-400">
+          <p className="text-fg-muted text-[10px] font-medium">
             Today&apos;s schedule
           </p>
           <ul className="mt-3 space-y-2.5">
             {SCHEDULE.map((item) => (
               <li
                 key={item.label}
-                className="flex items-center gap-2 text-[11px] text-slate-400"
+                className="text-fg-muted flex items-center gap-2 text-[11px]"
               >
                 <Chip>{item.time}</Chip>
                 <span className="truncate">{item.label}</span>

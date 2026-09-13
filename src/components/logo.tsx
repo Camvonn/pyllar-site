@@ -14,7 +14,7 @@ export function LogoMark({ className = "h-9 w-9" }: { className?: string }) {
   return (
     <span
       aria-hidden
-      className={`relative inline-flex shrink-0 items-center justify-center rounded-xl border border-white/15 bg-gradient-to-br from-teal-400/25 to-sky-500/10 shadow-[0_0_20px_-6px_rgba(45,212,191,0.85)] backdrop-blur-sm ${className}`}
+      className={`border-line relative inline-flex shrink-0 items-center justify-center rounded-xl border bg-gradient-to-br from-teal-500/20 to-sky-600/10 shadow-[0_6px_18px_-8px_rgba(13,148,136,0.8)] backdrop-blur-sm dark:from-teal-400/25 dark:to-sky-500/10 dark:shadow-[0_0_20px_-6px_rgba(45,212,191,0.85)] ${className}`}
     >
       <svg
         viewBox="0 0 24 24"
@@ -23,10 +23,12 @@ export function LogoMark({ className = "h-9 w-9" }: { className?: string }) {
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
+          {/* Stops read from theme tokens so the mark stays legible on both
+              the light and dark page backgrounds (see globals.css). */}
           <linearGradient id="pyllar-mark" x1="0" y1="24" x2="24" y2="0">
-            <stop stopColor="#2dd4bf" />
-            <stop offset="0.55" stopColor="#5eead4" />
-            <stop offset="1" stopColor="#7dd3fc" />
+            <stop stopColor="var(--logo-start)" />
+            <stop offset="0.55" stopColor="var(--logo-mid)" />
+            <stop offset="1" stopColor="var(--logo-end)" />
           </linearGradient>
         </defs>
         <rect x="2.5" y="4" width="3.5" height="17" rx="1.75" fill="url(#pyllar-mark)" />
@@ -41,7 +43,7 @@ export function LogoMark({ className = "h-9 w-9" }: { className?: string }) {
 export function Wordmark({ className = "" }: { className?: string }) {
   return (
     <span
-      className={`font-heading text-lg font-bold tracking-tight text-white ${className}`}
+      className={`font-heading text-fg-strong text-lg font-bold tracking-tight ${className}`}
     >
       Pyllar
     </span>

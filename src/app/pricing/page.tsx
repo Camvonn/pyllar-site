@@ -16,15 +16,15 @@ const TIERS = [
     label: "First facility",
     price: "$299",
     description: "Everything in Pyllar's core plan for your first location.",
-    accent: "from-teal-300 to-teal-500",
-    text: "text-teal-300",
+    accent: "from-teal-500 to-teal-600 dark:from-teal-300 dark:to-teal-500",
+    text: "text-teal-600 dark:text-teal-300",
   },
   {
     label: "Each additional facility",
     price: "$199",
     description: "For organizations running more than one facility on Pyllar.",
-    accent: "from-sky-300 to-sky-500",
-    text: "text-sky-300",
+    accent: "from-sky-500 to-sky-600 dark:from-sky-300 dark:to-sky-500",
+    text: "text-sky-600 dark:text-sky-300",
   },
 ];
 
@@ -121,19 +121,19 @@ export default function PricingPage() {
               />
               <p className={`eyebrow ${tier.text}`}>{tier.label}</p>
               <p className="mt-4 flex items-baseline gap-1.5">
-                <span className="font-heading text-5xl font-bold tracking-tight text-white">
+                <span className="font-heading text-fg-strong text-5xl font-bold tracking-tight">
                   {tier.price}
                 </span>
-                <span className="text-sm text-slate-500">/month</span>
+                <span className="text-fg-subtle text-sm">/month</span>
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-slate-400">
+              <p className="mt-4 text-fg-muted text-sm leading-relaxed">
                 {tier.description}
               </p>
             </div>
           ))}
         </Reveal>
 
-        <p className="mx-auto mt-8 max-w-2xl px-6 text-center text-sm italic text-slate-500">
+        <p className="mx-auto mt-8 max-w-2xl px-6 text-fg-subtle text-center text-sm italic">
           Example, starting prices shown to illustrate our pricing model —
           not a binding quote. Your actual price depends on facility size,
           seats, and add-ons, and will be confirmed when you request a demo.
@@ -143,18 +143,18 @@ export default function PricingPage() {
       <section className="relative py-20">
         <div className="hairline absolute inset-x-0 top-0" />
         <Reveal className="mx-auto max-w-3xl px-6">
-          <p className="eyebrow text-teal-400">Core plan</p>
-          <h2 className="font-heading mt-3 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+          <p className="eyebrow text-accent">Core plan</p>
+          <h2 className="font-heading mt-3 text-2xl font-bold text-fg-strong tracking-tight sm:text-3xl">
             What&apos;s included
           </h2>
           <ul className="mt-8 space-y-3.5">
             {CORE_INCLUDED.map((item) => (
               <li
                 key={item}
-                className="flex items-start gap-3 leading-relaxed text-slate-300"
+                className="flex items-start gap-3 text-fg leading-relaxed"
               >
                 <Check
-                  className="mt-1 h-5 w-5 shrink-0 text-teal-400"
+                  className="mt-1 h-5 w-5 text-accent shrink-0"
                   aria-hidden
                 />
                 <span>{item}</span>
@@ -167,21 +167,21 @@ export default function PricingPage() {
       <section className="relative py-20">
         <div className="hairline absolute inset-x-0 top-0" />
         <Reveal className="mx-auto max-w-3xl px-6">
-          <p className="eyebrow text-sky-400">Optional</p>
-          <h2 className="font-heading mt-3 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+          <p className="eyebrow text-sky-600 dark:text-sky-400">Optional</p>
+          <h2 className="font-heading mt-3 text-2xl font-bold text-fg-strong tracking-tight sm:text-3xl">
             Add-ons
           </h2>
-          <p className="mt-3 text-slate-400">
+          <p className="text-fg-muted mt-3">
             Available on top of the core plan for organizations that need
             them — priced separately, ask us for details.
           </p>
           <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
             {ADD_ONS.map((addOn) => (
               <div key={addOn.title} className="glass-card rounded-2xl p-5">
-                <h3 className="font-heading text-sm font-semibold text-white">
+                <h3 className="font-heading text-fg-strong text-sm font-semibold">
                   {addOn.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                <p className="mt-2 text-fg-muted text-sm leading-relaxed">
                   {addOn.description}
                 </p>
               </div>
@@ -193,17 +193,17 @@ export default function PricingPage() {
       <section className="relative py-20">
         <div className="hairline absolute inset-x-0 top-0" />
         <Reveal className="mx-auto max-w-3xl px-6">
-          <p className="eyebrow text-violet-400">Questions</p>
-          <h2 className="font-heading mt-3 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+          <p className="eyebrow text-violet-600 dark:text-violet-400">Questions</p>
+          <h2 className="font-heading mt-3 text-2xl font-bold text-fg-strong tracking-tight sm:text-3xl">
             Frequently asked questions
           </h2>
           <dl className="mt-10 space-y-6">
             {FAQS.map((faq) => (
               <div key={faq.question} className="glass rounded-2xl p-6">
-                <dt className="font-heading text-base font-semibold text-white">
+                <dt className="font-heading text-fg-strong text-base font-semibold">
                   {faq.question}
                 </dt>
-                <dd className="mt-2.5 text-sm leading-relaxed text-slate-400">
+                <dd className="mt-2.5 text-fg-muted text-sm leading-relaxed">
                   {faq.answer}
                 </dd>
               </div>
@@ -218,13 +218,13 @@ export default function PricingPage() {
           <h2 className="font-heading text-gradient text-3xl font-bold tracking-tight sm:text-[2.6rem]">
             Contact us for a custom quote
           </h2>
-          <p className="max-w-xl leading-relaxed text-slate-400">
+          <p className="text-fg-muted max-w-xl leading-relaxed">
             Every organization is a little different — tell us about your
             facility and we&apos;ll put together pricing that fits.
           </p>
           <Link
             href="/demo"
-            className="group mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-400 to-sky-400 px-7 py-3.5 text-base font-semibold text-slate-950 shadow-[0_0_30px_-6px_rgba(45,212,191,0.8)] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_0_45px_-4px_rgba(45,212,191,1)] active:scale-[0.98]"
+            className="btn-accent group mt-2 inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-base font-semibold"
           >
             Request a Demo
             <ArrowRight

@@ -83,12 +83,12 @@ export function DemoForm() {
     return (
       <div
         role="status"
-        className="rounded-2xl border border-teal-400/30 bg-teal-400/[0.08] p-6 text-center shadow-[0_0_40px_-12px_rgba(45,212,191,0.6)]"
+        className="border-accent/30 bg-accent/[0.08] rounded-2xl p-6 text-center shadow-[0_10px_40px_-12px_var(--accent-glow)]"
       >
-        <h3 className="font-heading text-lg font-semibold text-white">
+        <h3 className="font-heading text-fg-strong text-lg font-semibold">
           Thanks — we&apos;ve got your request.
         </h3>
-        <p className="mt-2 text-sm text-slate-300">
+        <p className="text-fg-muted mt-2 text-sm">
           A member of our team will reach out shortly to schedule your demo.
           Pyllar demos are guided walkthroughs with our team — there&apos;s no
           self-serve sign-up.
@@ -103,7 +103,7 @@ export function DemoForm() {
         <div>
           <label
             htmlFor={`${formId}-name`}
-            className="block text-sm font-medium text-slate-300"
+            className="text-fg text-sm font-medium block"
           >
             Full name
           </label>
@@ -117,12 +117,12 @@ export function DemoForm() {
             aria-describedby={
               fieldErrors.name ? `${formId}-name-error` : undefined
             }
-            className="mt-2 block w-full rounded-lg border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-slate-100 placeholder:text-slate-600 transition-colors focus:border-teal-400/60 focus:bg-white/[0.06] focus:outline-none focus:ring-1 focus:ring-teal-400/40"
+            className="border-line text-fg-strong placeholder:text-fg-subtle focus:border-accent/60 focus:ring-accent/40 mt-2 block w-full rounded-lg border bg-black/[0.02] px-3.5 py-2.5 transition-colors focus:ring-1 focus:outline-none dark:bg-white/[0.04]"
           />
           {fieldErrors.name ? (
             <p
               id={`${formId}-name-error`}
-              className="mt-1 text-xs text-rose-400"
+              className="mt-1 text-xs text-rose-600 dark:text-rose-400"
             >
               {fieldErrors.name}
             </p>
@@ -132,7 +132,7 @@ export function DemoForm() {
         <div>
           <label
             htmlFor={`${formId}-email`}
-            className="block text-sm font-medium text-slate-300"
+            className="text-fg text-sm font-medium block"
           >
             Work email
           </label>
@@ -146,12 +146,12 @@ export function DemoForm() {
             aria-describedby={
               fieldErrors.email ? `${formId}-email-error` : undefined
             }
-            className="mt-2 block w-full rounded-lg border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-slate-100 placeholder:text-slate-600 transition-colors focus:border-teal-400/60 focus:bg-white/[0.06] focus:outline-none focus:ring-1 focus:ring-teal-400/40"
+            className="border-line text-fg-strong placeholder:text-fg-subtle focus:border-accent/60 focus:ring-accent/40 mt-2 block w-full rounded-lg border bg-black/[0.02] px-3.5 py-2.5 transition-colors focus:ring-1 focus:outline-none dark:bg-white/[0.04]"
           />
           {fieldErrors.email ? (
             <p
               id={`${formId}-email-error`}
-              className="mt-1 text-xs text-rose-400"
+              className="mt-1 text-xs text-rose-600 dark:text-rose-400"
             >
               {fieldErrors.email}
             </p>
@@ -162,7 +162,7 @@ export function DemoForm() {
       <div>
         <label
           htmlFor={`${formId}-organization`}
-          className="block text-sm font-medium text-slate-300"
+          className="text-fg text-sm font-medium block"
         >
           Organization name
         </label>
@@ -178,12 +178,12 @@ export function DemoForm() {
               ? `${formId}-organization-error`
               : undefined
           }
-          className="mt-2 block w-full rounded-lg border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-slate-100 placeholder:text-slate-600 transition-colors focus:border-teal-400/60 focus:bg-white/[0.06] focus:outline-none focus:ring-1 focus:ring-teal-400/40"
+          className="border-line text-fg-strong placeholder:text-fg-subtle focus:border-accent/60 focus:ring-accent/40 mt-2 block w-full rounded-lg border bg-black/[0.02] px-3.5 py-2.5 transition-colors focus:ring-1 focus:outline-none dark:bg-white/[0.04]"
         />
         {fieldErrors.organization ? (
           <p
             id={`${formId}-organization-error`}
-            className="mt-1 text-xs text-rose-400"
+            className="mt-1 text-xs text-rose-600 dark:text-rose-400"
           >
             {fieldErrors.organization}
           </p>
@@ -193,51 +193,51 @@ export function DemoForm() {
       <div>
         <label
           htmlFor={`${formId}-phone`}
-          className="block text-sm font-medium text-slate-300"
+          className="text-fg text-sm font-medium block"
         >
-          Phone <span className="font-normal text-slate-500">(optional)</span>
+          Phone <span className="text-fg-subtle font-normal">(optional)</span>
         </label>
         <input
           id={`${formId}-phone`}
           name="phone"
           type="tel"
           autoComplete="tel"
-          className="mt-2 block w-full rounded-lg border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-slate-100 placeholder:text-slate-600 transition-colors focus:border-teal-400/60 focus:bg-white/[0.06] focus:outline-none focus:ring-1 focus:ring-teal-400/40"
+          className="border-line text-fg-strong placeholder:text-fg-subtle focus:border-accent/60 focus:ring-accent/40 mt-2 block w-full rounded-lg border bg-black/[0.02] px-3.5 py-2.5 transition-colors focus:ring-1 focus:outline-none dark:bg-white/[0.04]"
         />
       </div>
 
       <div>
         <label
           htmlFor={`${formId}-notes`}
-          className="block text-sm font-medium text-slate-300"
+          className="text-fg text-sm font-medium block"
         >
           Anything we should know?{" "}
-          <span className="font-normal text-slate-500">(optional)</span>
+          <span className="text-fg-subtle font-normal">(optional)</span>
         </label>
         <textarea
           id={`${formId}-notes`}
           name="notes"
           rows={3}
           placeholder="Number of youth/beds, current tools, timeline, questions..."
-          className="mt-2 block w-full rounded-lg border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-slate-100 placeholder:text-slate-600 transition-colors focus:border-teal-400/60 focus:bg-white/[0.06] focus:outline-none focus:ring-1 focus:ring-teal-400/40"
+          className="border-line text-fg-strong placeholder:text-fg-subtle focus:border-accent/60 focus:ring-accent/40 mt-2 block w-full rounded-lg border bg-black/[0.02] px-3.5 py-2.5 transition-colors focus:ring-1 focus:outline-none dark:bg-white/[0.04]"
         />
       </div>
 
       <div aria-live="polite">
         {status === "error" && errorMessage ? (
-          <p className="text-sm text-rose-400">{errorMessage}</p>
+          <p className="text-sm text-rose-600 dark:text-rose-400">{errorMessage}</p>
         ) : null}
       </div>
 
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full rounded-full bg-gradient-to-r from-teal-400 to-sky-400 px-4 py-3.5 text-sm font-semibold text-slate-950 shadow-[0_0_28px_-8px_rgba(45,212,191,0.9)] transition-all duration-200 hover:scale-[1.02] hover:shadow-[0_0_40px_-6px_rgba(45,212,191,1)] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100"
+        className="btn-accent w-full rounded-full px-4 py-3.5 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100"
       >
         {status === "submitting" ? "Sending..." : "Request a Demo"}
       </button>
 
-      <p className="text-center text-xs text-slate-500">
+      <p className="text-fg-subtle text-center text-xs">
         This is a request form, not a self-serve sign-up — a member of our
         team reviews every request and follows up personally.
       </p>

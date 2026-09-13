@@ -31,11 +31,11 @@ export function FeatureDetail() {
                 </p>
                 <h2
                   id={`${category}-heading`}
-                  className="font-heading mt-3 text-2xl font-bold tracking-tight text-white sm:text-3xl"
+                  className="font-heading text-fg-strong mt-3 text-2xl font-bold tracking-tight sm:text-3xl"
                 >
                   {info.label}
                 </h2>
-                <p className="mt-3 leading-relaxed text-slate-400">
+                <p className="text-fg-muted mt-3 leading-relaxed">
                   {info.description}
                 </p>
               </div>
@@ -51,22 +51,22 @@ export function FeatureDetail() {
                         className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${accent.gradient} ${accent.glow} transition-transform duration-300 group-hover:scale-110`}
                       >
                         <feature.icon
-                          className="h-5 w-5 text-slate-950"
+                          className={`h-5 w-5 ${accent.icon}`}
                           aria-hidden
                         />
                       </span>
-                      <h3 className="font-heading text-lg font-semibold text-white">
+                      <h3 className="font-heading text-fg-strong text-lg font-semibold">
                         {feature.title}
                       </h3>
                     </div>
-                    <p className="mt-4 text-sm leading-relaxed text-slate-400">
+                    <p className="text-fg-muted mt-4 text-sm leading-relaxed">
                       {feature.long}
                     </p>
                     <ul className="mt-4 space-y-2">
                       {feature.bullets.map((bullet) => (
                         <li
                           key={bullet}
-                          className="flex items-start gap-2.5 text-sm text-slate-400"
+                          className="text-fg-muted flex items-start gap-2.5 text-sm"
                         >
                           <Check
                             className={`mt-0.5 h-4 w-4 shrink-0 ${accent.text}`}
