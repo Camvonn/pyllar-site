@@ -125,10 +125,10 @@ export const FEATURES: Feature[] = [
     icon: Wallet,
     title: "Finance",
     short:
-      "Per diem tracking by youth, budgets by category, and expenses with receipts.",
-    long: "Track per diem reimbursements by youth, manage budgets by category, and log expenses with receipts — with optional scoping across multiple facilities for organizations that operate more than one home.",
+      "Cost tracking by youth, budgets by category, and expenses with receipts.",
+    long: "Track costs by youth, manage budgets by category, and log expenses with receipts — with optional scoping across multiple facilities for organizations that operate more than one home.",
     bullets: [
-      "Per diem tracking by youth",
+      "Cost tracking by youth",
       "Budgets broken out by category",
       "Expense logging with receipts",
       "Optional multi-facility scoping",

@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     "incident reporting software",
     "CARF reporting",
     "group home scheduling",
-    "per diem tracking",
+    "staff compliance tracking",
   ],
   openGraph: {
     title: "Pyllar | Group Home & Youth Facility Management Software",
