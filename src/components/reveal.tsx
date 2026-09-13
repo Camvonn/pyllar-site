@@ -47,7 +47,11 @@ export function Reveal({
           setVisible(false);
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
+      // Bottom margin is positive so the fade starts just *below* the fold and
+      // has finished by the time the element is actually in view. A negative
+      // margin (or a non-zero threshold) delays the reveal until the element is
+      // already on screen, which reads as the page lagging behind the scroll.
+      { threshold: 0, rootMargin: "0px 0px 12% 0px" },
     );
     observer.observe(node);
     return () => observer.disconnect();
@@ -59,8 +63,8 @@ export function Reveal({
       style={{ transitionDelay: `${delayMs}ms` }}
       className={[
         className,
-        "transition-all duration-700 ease-out",
-        visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
+        "transition-[opacity,transform] duration-500 ease-out",
+        visible ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0",
       ]
         .filter(Boolean)
         .join(" ")}

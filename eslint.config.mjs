@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Alternate build output used by `npm run preview`.
+    ".next-preview/**",
   ]),
 ]);
 

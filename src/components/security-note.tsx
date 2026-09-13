@@ -49,7 +49,7 @@ export function SecurityNote({ compact = false }: { compact?: boolean }) {
 
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3">
           {PILLARS.map((pillar, index) => (
-            <Reveal key={pillar.title} delayMs={index * 90}>
+            <Reveal key={pillar.title} delayMs={index * 60}>
               <div className="glass h-full rounded-2xl p-6">
                 <pillar.icon
                   className="h-5 w-5 text-violet-600 dark:text-violet-300"

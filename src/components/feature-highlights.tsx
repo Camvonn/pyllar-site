@@ -23,7 +23,7 @@ export function FeatureHighlights() {
           {FEATURES.map((feature, index) => {
             const accent = CATEGORY_ACCENTS[feature.category];
             return (
-              <Reveal key={feature.slug} delayMs={(index % 3) * 90}>
+              <Reveal key={feature.slug} delayMs={(index % 3) * 60}>
                 <div className="glass-card group h-full rounded-2xl p-6">
                   <div
                     className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${accent.gradient} ${accent.glow} transition-transform duration-300 group-hover:scale-110`}

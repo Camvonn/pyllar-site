@@ -36,7 +36,7 @@ export function MockupFrame({
 
       <div
         aria-hidden="true"
-        className="border-line bg-mock-bg relative overflow-hidden rounded-2xl border shadow-[0_30px_70px_-30px_rgba(10,16,32,0.35)] backdrop-blur-xl dark:shadow-[0_40px_90px_-30px_rgba(0,0,0,0.9)]"
+        className="border-line bg-mock-bg relative overflow-hidden rounded-2xl border shadow-[0_30px_70px_-30px_rgba(10,16,32,0.35)] dark:shadow-[0_40px_90px_-30px_rgba(0,0,0,0.9)]"
       >
         {/* Top highlight, mimicking light catching the bezel edge. */}
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-teal-400/60 to-transparent dark:via-teal-300/50" />

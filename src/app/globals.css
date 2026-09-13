@@ -144,7 +144,13 @@ p {
 /* Translucent "glass" panel that reads as a floating instrument surface over
    the page background. In light mode it leans on a near-white fill plus a
    soft shadow (translucent white over white reads as nothing); in dark mode
-   it's a true translucent white wash. */
+   it's a true translucent white wash.
+
+   Deliberately no `backdrop-filter` here. These panels sit on the sitewide
+   background, which is already a smooth, low-frequency gradient — blurring it
+   yields near-identical pixels while forcing a backdrop re-sample per panel on
+   every scroll frame. The sticky header (see components/header.tsx) does keep
+   its blur, because real page content scrolls underneath it. */
 .glass {
   background: linear-gradient(
     145deg,
@@ -153,7 +159,6 @@ p {
   );
   border: 1px solid var(--line);
   box-shadow: 0 1px 2px rgba(10, 16, 32, 0.04);
-  backdrop-filter: blur(14px);
 }
 
 .dark .glass {
@@ -175,7 +180,6 @@ p {
   );
   border: 1px solid var(--line);
   box-shadow: 0 1px 2px rgba(10, 16, 32, 0.04);
-  backdrop-filter: blur(14px);
   transition:
     transform 300ms ease,
     border-color 300ms ease,
@@ -256,15 +260,17 @@ p {
     linear-gradient(90deg, rgba(148, 190, 220, 0.5) 1px, transparent 1px);
 }
 
+/* Film-grain tooth over the aurora. No `mix-blend-mode`: this layer sits on
+   top of a continuously animating sibling, so a blend mode would force the
+   full viewport to re-composite every frame for the life of the page. At
+   these opacities plain alpha is visually indistinguishable. */
 .site-noise {
-  opacity: 0.02;
-  mix-blend-mode: multiply;
+  opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .dark .site-noise {
-  opacity: 0.035;
-  mix-blend-mode: overlay;
+  opacity: 0.04;
 }
 
 /* Edge falloff that keeps text contrast high toward the page margins. */
@@ -422,8 +428,12 @@ p {
   }
 }
 
+/* `will-change` promotes the aurora to its own compositor layer so the drift
+   is a pure transform on an already-rasterized texture, rather than a repaint
+   of four full-viewport radial gradients every frame. */
 .animate-aurora {
   animation: aurora-drift 26s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-float-slow {

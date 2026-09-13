@@ -14,7 +14,7 @@ export function LogoMark({ className = "h-9 w-9" }: { className?: string }) {
   return (
     <span
       aria-hidden
-      className={`border-line relative inline-flex shrink-0 items-center justify-center rounded-xl border bg-gradient-to-br from-teal-500/20 to-sky-600/10 shadow-[0_6px_18px_-8px_rgba(13,148,136,0.8)] backdrop-blur-sm dark:from-teal-400/25 dark:to-sky-500/10 dark:shadow-[0_0_20px_-6px_rgba(45,212,191,0.85)] ${className}`}
+      className={`border-line relative inline-flex shrink-0 items-center justify-center rounded-xl border bg-gradient-to-br from-teal-500/20 to-sky-600/10 shadow-[0_6px_18px_-8px_rgba(13,148,136,0.8)] dark:from-teal-400/25 dark:to-sky-500/10 dark:shadow-[0_0_20px_-6px_rgba(45,212,191,0.85)] ${className}`}
     >
       <svg
         viewBox="0 0 24 24"
